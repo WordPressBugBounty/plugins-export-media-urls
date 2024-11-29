@@ -3,7 +3,7 @@ Contributors: Atlas_Gondal, waqasgondal
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YWT3BFURG6SGS&source=url
 Tags: export media urls, media links, export utilities, export, csv
 Requires at least: 3.1
-Tested up to: 6.6
+Tested up to: 6.7.1
 Stable tag: 2.1
 Requires PHP: 5.4
 License: GPLv2 or later
