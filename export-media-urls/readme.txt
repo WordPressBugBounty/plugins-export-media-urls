@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: export media urls, media links, export utilities, export, csv
 Requires at least: 3.1
 Tested up to: 6.7.1
-Stable tag: 2.1
+Stable tag: 2.2
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,6 +20,7 @@ You can export Media's:
 * ID
 * Title
 * File Name
+* File Size
 * Caption
 * Alt Text
 * Description
@@ -27,7 +28,7 @@ You can export Media's:
 * Date Uploaded
 * And its Type
 
-The data can be filtered by Author, before extraction.
+The data can be filtered by Author, or between selected date range before extraction.
 
 == When we need this plugin? ==
 
@@ -140,6 +141,11 @@ Yes. The plugin requires a PHP version 5.4 or higher and Wordpress version 3.1.0
 
 == Changelog ==
 
+= 2.2 = 
+* Added - additional file size data field
+* Improvement - preserves the previously selected values
+* Compatibility - tested with wordpress 6.7.1
+
 = 2.1 = 
 * Improvement - author filtering is simplified
 * Compatibility - tested with wordpress 6.4.3
@@ -166,6 +172,7 @@ Yes. The plugin requires a PHP version 5.4 or higher and Wordpress version 3.1.0
 
 == Upgrade Notice ==
 
-= 2.1 = 
-* Improvement - author filtering is simplified
-* Compatibility - tested with wordpress 6.4.3
+= 2.2 = 
+* Added - additional file size data field
+* Improvement - preserves the previously selected values
+* Compatibility - tested with wordpress 6.7.1

@@ -4,7 +4,7 @@
  * Plugin Name: Export Media URLs
  * Plugin URI:  https://wordpress.org/plugins/export-media-urls/
  * Description: This plugin allows you to extract all URLs of your media, along with title, date, and type. It supports writing output in CSV file, or you can view URLs within the dashboard. It can be very useful during migration, seo analysis and security audit.
- * Version:     2.1
+ * Version:     2.2
  * Author:      Atlas Gondal
  * Author URI:  https://AtlasGondal.com/
  * License:     GPL2
