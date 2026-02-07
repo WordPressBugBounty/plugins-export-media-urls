@@ -176,8 +176,8 @@ class ExportMediaURLsAdmin
                                         <label><input type="radio" name="date-range" value="range" <?php echo $selected_date_range == 'range' ? 'checked' : ''; ?> required="required" onclick="showRangeFields()" /> <?php echo esc_html__('Between Dates', self::PLUGIN_TEXT_DOMAIN); ?></label><br />
 
                                         <div id="dateRange" style="display: <?php echo $selected_date_range == 'range' ? 'block' : 'none'; ?>">
-                                            <?php echo esc_html__('From:', self::PLUGIN_TEXT_DOMAIN); ?> <input type="date" name="start-date" value="<?php echo $selected_start_date; ?>" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <?php echo esc_html__('To:', self::PLUGIN_TEXT_DOMAIN); ?> <input type="date" name="end-date" value="<?php echo $selected_end_date; ?>" />
+                                            <?php echo esc_html__('From:', self::PLUGIN_TEXT_DOMAIN); ?> <input type="date" name="start-date" value="<?php echo esc_attr($selected_start_date); ?>" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <?php echo esc_html__('To:', self::PLUGIN_TEXT_DOMAIN); ?> <input type="date" name="end-date" value="<?php echo esc_attr($selected_end_date); ?>" />
                                         </div>
                                     </td>
 
@@ -529,9 +529,9 @@ class ExportMediaURLsAdmin
                 fclose($file);
 
                 $csv_download_url = $upload_directory['url'] . "/" . $csv_file_name . ".CSV";
-                $success_message = __("Media Data Exported Successfully! <a href='$csv_download_url' target='_blank'><strong>Click here</strong></a> to Download.", Constants::PLUGIN_TEXT_DOMAIN);
-
-                echo "<div class='updated' style='width: 97%'>$success_message</div>";
+                $success_message = sprintf(esc_html__('Media Data Exported Successfully! %s to Download.', Constants::PLUGIN_TEXT_DOMAIN), '<a href="' . esc_url($csv_download_url) . '" target="_blank"><strong>' . esc_html__('Click here', Constants::PLUGIN_TEXT_DOMAIN) . '</strong></a>');
+                
+                echo '<div class="updated" style="width: 97%">' . $success_message . '</div>';
 
                 echo "<div class='notice notice-warning' style='width: 97%'>" . __('Once you have downloaded the file, it is recommended to delete file from the server, for security reasons.', Constants::PLUGIN_TEXT_DOMAIN) . " <a href='" . wp_nonce_url(admin_url('tools.php?page=' . Constants::PLUGIN_SETTINGS_PAGE_SLUG . '&del=y&f=') . base64_encode($csv_file_path)) . "' ><strong>" . __('Click Here', Constants::PLUGIN_TEXT_DOMAIN) . "</strong></a> " . __('to delete the file. And don\'t worry, you can always regenerate anytime. :)', Constants::PLUGIN_TEXT_DOMAIN) . "</div>";
 
@@ -543,7 +543,7 @@ class ExportMediaURLsAdmin
 
                 foreach ($headers as $key => $val) {
                     if (isset($data[$key])) {
-                        $tableHtml .= "<th id='$key'>$val</th>";
+                        $tableHtml .= "<th id='" . esc_attr($key) . "'>" . esc_html($val) . "</th>";
                     }
                 }
 
