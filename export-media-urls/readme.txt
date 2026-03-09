@@ -3,8 +3,8 @@ Contributors: Atlas_Gondal, waqasgondal
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YWT3BFURG6SGS&source=url
 Tags: export media urls, media links, export utilities, export, csv
 Requires at least: 3.1
-Tested up to: 6.9
-Stable tag: 2.3
+Tested up to: 6.9.1
+Stable tag: 2.3.1
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -141,6 +141,10 @@ Yes. The plugin requires a PHP version 5.4 or higher and Wordpress version 3.1.0
 
 == Changelog ==
 
+= 2.3.1 = 
+* Improvement – strengthened csv file name to prevent unauthorized discovery
+* Compatibility – tested with WordPress 6.9.1
+
 = 2.3 =
 * Fixed - patched a security vulnerability
 
@@ -167,5 +171,6 @@ Yes. The plugin requires a PHP version 5.4 or higher and Wordpress version 3.1.0
 
 == Upgrade Notice ==
 
-= 2.3 = 
-* Fixed - patched a security vulnerability
+= 2.3.1 = 
+* Improvement – strengthened csv file name to prevent unauthorized discovery
+* Compatibility – tested with WordPress 6.9.1
