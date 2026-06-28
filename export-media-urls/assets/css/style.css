@@ -1,194 +1,572 @@
-.EMU-Wrapper {
+/* ====================================================================
+ * Export Media URLs — admin screen styles
+ * ==================================================================== */
+
+/* --- Page header (title + icon) --- */
+
+.emu-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 14px 0 6px;
+}
+
+.emu-header .emu-header-icon {
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    color: #2271b1;
+}
+
+.emu-page-title {
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1d2327;
+}
+
+.emu-subtitle {
+    text-align: center;
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #50575e;
+}
+
+.emu-header-divider {
+    border: 0;
+    border-top: 1px solid #dcdcde;
+    max-width: 760px;
+    margin: 12px auto 22px;
+}
+
+/* --- Layout --- */
+
+.emuWrapper {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    overflow: hidden
+    align-items: flex-start;
+    gap: 20px;
+    overflow: visible;
 }
 
-.EMU-Main-Container {
-    width: 75%;
-    margin-bottom: 0
-}
-
-.EMU-Side-Container {
-    width: 24%
-}
-
-.EMU-Side-Container .postbox:first-child {
-    margin-left: 20px;
-    padding-top: 15px
-}
-
-.eaucolumns {
-    float: left;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 5px
-}
-
-.EMU-Side-Container .postbox {
+#emuMainContainer {
+    flex: 1 1 0;
+    min-width: 0;
     margin-bottom: 0;
-    float: none
+    border: 1px solid #e2e4e7;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
 }
 
-.EMU-Side-Container .inside {
-    margin-bottom: 0
+#emuMainContainer .inside {
+    padding: 8px 20px 16px;
 }
 
-.EMU-Side-Container hr {
-    width: 70%;
-    margin: 10px auto
+#emuSideContainer {
+    width: 280px;
+    flex: 0 0 280px;
+    display: block;
 }
 
-.EMU-Side-Container h3 {
+.emucolumns {
+    display: block;
+    margin-top: 5px;
+}
+
+/* --- Form table --- */
+
+#infoForm .form-table th {
+    font-size: 14px;
+    color: #1d2327;
+    padding-top: 18px;
+}
+
+#infoForm .form-table > tbody > tr {
+    border-bottom: 1px solid #f0f0f1;
+}
+
+#infoForm .form-table > tbody > tr:last-child {
+    border-bottom: 0;
+}
+
+#emuMainContainer code {
+    font-size: 11px;
+    background-color: #eee;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* --- Action bar (Download / Display Here) --- */
+
+.emu-actions {
+    padding-top: 16px !important;
+}
+
+.emu-actions .button-primary {
+    margin-right: 8px;
+}
+
+/* --- Export field selector: presets + collapsible groups --- */
+
+.emu-presets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.emu-presets-label {
+    font-weight: 600;
+    margin-right: 2px;
+}
+
+.emu-presets .emu-preset {
+    border-radius: 14px;
+    padding: 2px 14px;
+}
+
+.emu-field-group {
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.emu-field-group > summary {
+    cursor: pointer;
+    padding: 10px 12px;
+    font-weight: 600;
+    list-style: none;
+    background: #f6f7f7;
+    transition: background .15s ease;
+}
+
+.emu-field-group > summary:hover {
+    background: #f0f0f1;
+}
+
+.emu-field-group[open] > summary {
+    border-bottom: 1px solid #dcdcde;
+}
+
+.emu-field-group > summary::-webkit-details-marker {
+    display: none;
+}
+
+.emu-field-group > summary::before {
+    content: "\25B8";
+    display: inline-block;
+    margin-right: 8px;
+    color: #646970;
+}
+
+.emu-field-group[open] > summary::before {
+    content: "\25BE";
+}
+
+.emu-group-tools {
+    padding: 8px 12px 0;
+    font-size: 12px;
+}
+
+.emu-field-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 6px 16px;
+    padding: 10px 12px 12px;
+}
+
+.emu-field-grid label {
+    display: block;
+    white-space: nowrap;
+}
+
+/* --- Sidebar (support) --- */
+
+#emuSideContainer .postbox {
+    margin-bottom: 0;
+    float: none;
+    border: 1px solid #e2e4e7;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 42px;
+    padding: 70px 0;
+}
+
+#emuSideContainer .inside {
+    margin: 0;
+    /* The vertical padding the support box was missing top & bottom. */
+    padding: 18px 18px 22px;
+}
+
+#emuSideContainer h3 {
     cursor: default;
     text-align: center;
     font-size: 16px;
-    margin: 1px 0
+    margin: 4px 0 10px;
+    color: #1d2327;
 }
 
-.EMU-Side-Container li {
+#emuSideContainer hr {
+    width: 80%;
+    border: 0;
+    border-top: 1px solid #e2e4e7;
+    margin: 20px auto;
+}
+
+#emuSideContainer p {
+    margin: 0 0 8px;
+}
+
+#emuSideContainer ul {
+    margin: 0;
+}
+
+#emuSideContainer li {
     list-style: disclosure-closed;
-    margin-left: 25px
+    margin-left: 22px;
+    margin-bottom: 4px;
 }
 
-.EMU-Side-Container li a img {
+#emuSideContainer li a img {
     display: inline-block;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
-#EMUDevelopedBy {
-    text-align: center
+#emuDevelopedBy {
+    text-align: center;
+    margin: 8px 0 0;
 }
+
+/* --- Results table --- */
 
 #outputData {
     border-collapse: collapse;
     width: 98%;
-    border: 1px solid #ccc;
-    margin: 0;
-    padding: 0;
-    table-layout: fixed
-}
-
-#outputData tr {
-    border: 1px solid #ddd;
-    padding: .35em
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 #outputData tr:nth-child(even) {
-    background-color: #fff
+    background-color: #fff;
 }
 
 #outputData tr:hover {
-    background-color: #ddd
+    background-color: #f0f6fc;
 }
 
 #outputData th {
-    background-color: #000;
+    background-color: #1d2327;
     color: #fff;
-    letter-spacing: .1em
+    font-weight: 600;
 }
 
 #outputData td,
 #outputData th {
     text-align: left;
-    padding: 8px;
+    padding: 8px 10px;
     word-wrap: break-word;
-    width: max-content;
 }
 
 #outputData th:first-child {
-    width: 4%
+    width: 4%;
 }
 
-#outputData #id {
-    width: 6%
+/* --- Results pagination --- */
+
+.emu-results-toolbar {
+    margin: 0 20px 12px 0;
+    text-align: right;
 }
 
-#outputData #title {
-    width: 20%
+.emu-results-toolbar .emu-perpage-label {
+    font-weight: 600;
 }
 
-#outputData #url {
-    width: 50%
+.emu-pagination {
+    margin: 14px 0;
+    text-align: center;
 }
 
-#outputData #date {
-    width: 12%
+.emu-pagination .emu-page-indicator {
+    margin: 0 12px;
+    font-weight: 600;
+    vertical-align: middle;
 }
 
-#outputData #type {
-    width: 8%
+/* --- Media Tools tab --- */
+
+.emu-tab-nav {
+    margin-bottom: 20px;
 }
 
-@media screen and (max-width:800px) {
-    .EMU-Main-Container {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto
+/* Icon + label tabs in the single flat tab bar. */
+.emu-tab-nav .nav-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.emu-tab-nav .nav-tab .dashicons {
+    font-size: 17px;
+    width: 17px;
+    height: 17px;
+    line-height: 1;
+    opacity: .8;
+}
+
+.emu-tab-nav .nav-tab-active .dashicons {
+    opacity: 1;
+    color: #2271b1;
+}
+
+/* Top toolbar holds only the items-per-page selector, flush with the section's
+ * right edge. */
+.emu-tools-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    margin: 6px 0 12px;
+}
+
+.emu-perpage-form {
+    margin: 0;
+}
+
+.emu-perpage-form .emu-perpage-label {
+    font-weight: 600;
+}
+
+/* Bottom pager: centered, with breathing room above and below. */
+.emu-pager-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 26px 0 10px;
+}
+
+.emu-pager-bottom .emu-pager-page {
+    font-weight: 600;
+    color: #1d2327;
+    min-width: 130px;
+    text-align: center;
+}
+
+.emu-pager-bottom .button.disabled {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.emu-tool-heading {
+    margin: 28px 0 4px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.emu-count-badge {
+    display: inline-block;
+    min-width: 20px;
+    padding: 1px 8px;
+    border-radius: 10px;
+    background: #2271b1;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.emu-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 10px 0 4px;
+}
+
+.emu-card {
+    flex: 1 1 130px;
+    min-width: 120px;
+    border: 1px solid #e2e4e7;
+    border-radius: 8px;
+    background: #fff;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+}
+
+.emu-card-label {
+    font-size: 13px;
+    color: #50575e;
+}
+
+.emu-card-num {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1d2327;
+}
+
+.emu-card-sub {
+    font-size: 12px;
+    color: #646970;
+}
+
+.emu-card-total {
+    background: #f6f7f7;
+}
+
+/* --- Summary dashboard: maintenance-tool feature cards --- */
+
+.emu-feature-grid {
+    display: grid;
+    /* Four across on large screens (~25% each); steps down on narrower ones. */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 10px 0 8px;
+}
+
+@media screen and (max-width: 1200px) {
+    .emu-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .emu-feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.emu-feature-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid #e2e4e7;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+.emu-feature-card:hover,
+.emu-feature-card:focus {
+    border-color: #2271b1;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .1);
+    transform: translateY(-2px);
+}
+
+.emu-feature-card .emu-feature-icon {
+    flex: 0 0 auto;
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+    color: #2271b1;
+}
+
+.emu-feature-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.emu-feature-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.emu-feature-desc {
+    font-size: 13px;
+    color: #50575e;
+    margin-top: 2px;
+}
+
+.emu-feature-card .emu-feature-arrow {
+    flex: 0 0 auto;
+    color: #c3c4c7;
+    transition: color .15s ease, transform .15s ease;
+}
+
+.emu-feature-card:hover .emu-feature-arrow {
+    color: #2271b1;
+    transform: translateX(2px);
+}
+
+.emu-tool-table {
+    width: 100%;
+    max-width: none;
+    margin: 10px 0 8px;
+}
+
+.emu-tool-table code {
+    background: #f0f0f1;
+    font-size: 12px;
+}
+
+.emu-tool-table .emu-col-id {
+    width: 60px;
+}
+
+.emu-dupe-group thead th {
+    background: #fef8e7;
+    color: #8a6d1b;
+    font-weight: 600;
+}
+
+.emu-alt-table .emu-col-thumb {
+    width: 70px;
+}
+
+.emu-alt-table .emu-col-thumb img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.emu-alt-table .emu-col-title {
+    width: 28%;
+}
+
+.emu-alt-table tr.emu-alt-missing td {
+    background: #fef8e7;
+}
+
+.emu-alt-actions {
+    margin: 14px 0 30px;
+}
+
+/* --- Responsive --- */
+
+@media screen and (max-width: 1100px) {
+    #emuSideContainer {
+        width: 100%;
+        flex-basis: 100%;
     }
 
-    .EMU-Side-Container {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 20px
-    }
-
-    .EMU-Side-Container .postbox:first-child {
-        margin-left: 0
-    }
-
-    #infoForm label {
-        padding-bottom: 32px
-    }
-
-    #outputData {
-        border: 0;
-        width: 86%;
-        margin-left: auto;
-        margin-right: auto
-    }
-
-    #outputData thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px
-    }
-
-    #outputData tr {
-        border-bottom: 3px solid #ddd;
-        display: block;
-        margin-bottom: .625em
-    }
-
-    #outputData th {
-        width: 95% !important
-    }
-
-    #outputData td,
-    #outputData th {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        font-size: .8em
-    }
-
-    #outputData td::before {
-        float: left;
-        font-weight: 700;
-        text-transform: uppercase
-    }
-
-    #outputData td:last-child {
-        border-bottom: 0
+    #emuSideContainer .postbox {
+        position: static;
     }
 }

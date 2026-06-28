@@ -1,53 +1,75 @@
 === Export Media URLs ===
 Contributors: Atlas_Gondal, waqasgondal
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YWT3BFURG6SGS&source=url
-Tags: export media urls, media links, export utilities, export, csv
-Requires at least: 3.1
-Tested up to: 6.9.1
-Stable tag: 2.3.1
+Tags: export, media, urls, csv, json
+Requires at least: 3.6
+Tested up to: 7.0
+Stable tag: 3.0
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-An efficient media information extraction utility with CSV export option, suitable for several use-cases including migration and SEO.
+Extract every Media Library URL with title, size, dimensions, alt text and more. Filter by media type, export to CSV/JSON, and audit your library.
 
 == Description ==
 
-The ultimate solution for seamlessly managing and extracting information from your media library. This user-friendly plugin simplifies the task of gathering essential details like title, date, caption, alt-text, description and type of media file. It facilitates the generation of CSV output or allows you to conveniently view URLs directly within the dashboard, proving invaluable for tasks such as migration, SEO analysis, and security audits. 
+The fastest way to pull a complete inventory of your WordPress Media Library. Export every attachment's details — pick exactly the columns you want from grouped, collapsible field sections with quick-select presets — then download a CSV or JSON file, or display the results in a paginated table right inside the dashboard. A separate **Media Tools** tab helps you audit and clean up the library. Invaluable for migrations, SEO and accessibility audits, and library cleanup.
 
-You can export Media's:
+= Media Tools =
+
+Each tool lives on its own sub-tab and processes the library in pages (100, 250, 500, 1000 or All per page), so the scans stay fast and light even on libraries with thousands of items.
+
+* **Storage summary** — attachment counts per media type, read straight from the database (instant)
+* **Missing file detector** — find attachments whose file is gone from disk (e.g. after a bad migration)
+* **Duplicate detection** — find files that are byte-for-byte identical (matched by size and content hash; choose "All" for a complete cross-library scan)
+* **Heavy image flags** — spot oversized images (large file size or pixel dimensions) that slow your pages
+* **Bulk alt-text editing** — review and update alt text image by image, page by page, with missing alt text highlighted
+
+You can export each media item's:
 
 * ID
 * Title
 * File Name
+* URL
 * File Size
+* MIME Type
+* Dimensions (width x height)
+* Thumbnail / Medium / Large image URLs
 * Caption
 * Alt Text
+* Alt Missing (flag — quickly find images with no alt text)
 * Description
-* URL
+* Parent Post and Parent URL
 * Date Uploaded
-* And its Type
 
-The data can be filtered by Author, or between selected date range before extraction.
+The data can be filtered by **media type** (images, video, audio, documents, archives), by **attachment status** (attached vs. unattached/orphaned), by author, and between a date range before extraction. You can also export a specific item range to keep each request small on very large libraries.
 
-== When we need this plugin? ==
+== When do we need this plugin? ==
 
-* To check Media URLs of your website
-* During migration
-* During security audit
-* To remove demo images, imported by theme
+* To check all Media URLs of your website
+* During a migration (and to confirm everything moved across)
+* During an SEO or accessibility audit (find images missing alt text)
+* To clean up orphaned media imported by a theme demo
+* During a security audit
 
-You'll be surprised to know that, there exist some media, which you never know off or maybe it is imported by theme demo. But don't worry, you'll be able to find those URLs with the help of this small utility and perform the cleanup. :)
+= Customizable Features =
+
+* Choose exactly which columns to export, grouped with quick-select presets (Migration, SEO/Accessibility, Cleanup, Full)
+* Download as CSV or JSON, or display the results in a paginated table
+* Filter by media type, attachment status, author and date range
+* Export a specific item range (helpful on very large libraries)
+* Custom or randomly generated download file name
+* Remembers your last field selection
+* CSV and JSON downloads stream straight to the browser, leaving nothing behind in wp-content/uploads
 
 = System requirements =
 
 * PHP version 5.4 or higher
-* Wordpress version 3.1.0 or higher
-
+* WordPress version 3.6 or higher
 
 = Feedback =
 
-If you like this plugin, then please consider leaving us a good [rating](https://wordpress.org/support/plugin/export-media-urls/reviews/?filter=5#new-post).
+If you like this plugin, then please consider leaving us a good [rating](https://wordpress.org/support/plugin/export-media-urls/reviews/).
 
 = Contact =
 
@@ -64,96 +86,95 @@ For further information please send me an [email](https://AtlasGondal.com/contac
 = From WordPress.org =
 
 1. Download Export Media URLs.
-2. Unzip plugin.
-2. Upload the 'Export All URLs' directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...)
-3. Activate Export Media URLs from your Plugins page.
+2. Unzip the plugin.
+3. Upload the 'export-media-urls' directory to your '/wp-content/plugins/' directory, using your favorite method (ftp, sftp, scp, etc...)
+4. Activate Export Media URLs from your Plugins page.
 
 = Usage =
 
-1. Go to Tools > Export Media URLs to export media URLs of your website.
-2. Choose Data (e.g Media ID, Title, URLs, Date, Type)
-3. Filter by Author, if needs to
-4. Select Export type (dashboard or csv)
-5. Finally, Click on Export Now.
+1. Go to Tools > Export Media URLs.
+2. Tick the fields you want (or use a preset such as "SEO / Accessibility").
+3. Choose a media type, and optionally filter by attachment status, author or date range.
+4. Click "Download" to get a CSV or JSON file, or "Display Here" to view the results in a paginated table.
 
 = Uninstalling: =
 
 1. In the Admin Panel, go to "Plugins" and deactivate the plugin.
-2. Go to the "plugins" folder of your WordPress directory and delete the files/folder for this plugin.
-
+2. Click "Delete" on the Plugins page. This removes the plugin files and its per-user preference automatically.
 
 == Frequently Asked Questions ==
 
-= About Plugin Support? =
+= What data can I export? =
 
-Post your question on support forum and we will try to answer your question as quick as possible.
+For every media item you can export the ID, Title, File Name, URL, File Size, MIME Type, Dimensions, sized-image URLs (thumbnail/medium/large), Caption, Alt Text, an "Alt Missing" flag, Description, Parent Post and Parent URL, and the upload date. Choose exactly the columns you want using the grouped checkboxes and quick-select presets.
 
-= Why did you make this plugin?  =
+= Can I export to JSON as well as CSV? =
 
-We couldn't find a plugin that would export media URLs, along with additional data such as name, date and type. So, we make this utility, and it works just like that.
+Yes. You can download the data as a CSV file, download it as JSON, or display it in a paginated table right inside the dashboard.
 
-= In what scenarios can this plugin be beneficial? =
+= Can I find media that isn't used anywhere? =
 
-The plugin proves to be extremely useful during tasks such as website migration, SEO analysis, and security audits. It simplifies the process of managing and understanding your media assets, providing valuable insights.
+Yes. Use the "Attachment Status" filter and choose "Unattached (orphaned)" to list media that is not attached to any post — handy for cleaning up demo images imported by a theme.
 
-= Can I export the extracted data in a specific format? = 
+= Can I find images missing alt text? =
 
-Yes, the plugin supports exporting data in CSV format, offering a structured and easily readable output that can be utilized for further analysis or documentation.
+Yes. Add the "Alt Missing" field (or use the SEO / Accessibility preset). Any image with no alt text is flagged, so you can fix accessibility and SEO gaps quickly.
 
-= Why the file name is randomly generated?  =
+= Will it work on a large site without timing out? =
 
-Exporting the file with static name can be easily found by malicious attacker, and may result in sensitive information leakage. So we decided to generate random name, which are harder to guess.
+The export reads attachments in batches and streams results out as it goes, so memory stays bounded no matter how many items you have. You can also export a specific item range to keep each request small.
 
-= Can I view and manage URLs directly within the WordPress dashboard? =
+= Is the exported CSV safe to open in Excel? =
 
-Yes, the plugin allows you to conveniently view and manage extracted URLs directly within the WordPress dashboard, providing a seamless and centralized experience.
-
-= Is it user-friendly for individuals with minimal technical knowledge? =
-
-Absolutely! This plugin is designed with user-friendliness in mind. Its intuitive interface ensures that users, regardless of their technical expertise, can efficiently navigate and utilize its features.
-
-= Is there a limit to the number of URLs that can be processed by the plugin? =
-
-The plugin's capacity to handle URLs depends on your server configuration and resources. For average website, this is not a big concern. And if you ran into any issue, try increasing server resource or reach out to support and we'll be happy to help.
+Yes. Cell values that begin with =, +, - or @ are neutralized, so a malicious value cannot run as a spreadsheet formula when the file is opened.
 
 = Does Export Media URLs make changes to the database? =
 
-No. It has no settings / configurations to store so it does not touch the database.
-
-= Is this plugin compatible with the latest version of WordPress? =
-
-The plugin is designed to be compatible with the latest WordPress versions. Regular updates ensure that it remains functional and aligned with the evolving WordPress environment.
+No. It only stores your last field selection as a per-user preference; it does not create tables or modify your content.
 
 = Which PHP version do I need? =
 
-This plugin has been tested and works with PHP versions 5.4 and greater. WordPress itself [recommends using PHP version 7.4 or greater](https://wordpress.org/about/requirements/). If you're using a PHP version lower than 5.4 please upgrade your PHP version or contact your Server administrator.
-
-= Are there any server requirements? =
-
-Yes. The plugin requires a PHP version 5.4 or higher and Wordpress version 3.1.0 or higher.
+This plugin works with PHP version 5.4 and greater. WordPress itself [recommends using PHP version 7.4 or greater](https://wordpress.org/about/requirements/).
 
 == Screenshots ==
 
-1. Admin screenshot of Export Media URLs
-2. Exported data in the dashboard
-3. Exported data to a CSV file
-4. Test run on Wordpress 3.1
+1. The Export screen — pick fields from collapsible groups with quick-select presets, and filter by media type
+2. Results shown right in the dashboard, in a paginated table
+3. The Summary dashboard — library stats plus one-click access to every maintenance tool
+4. Duplicate Files — byte-for-byte identical files grouped for easy cleanup
+5. Bulk Alt-Text editing — fix missing alt text across the library, with missing rows highlighted
 
 == Changelog ==
 
-= 2.3.1 = 
-* Improvement – strengthened csv file name to prevent unauthorized discovery
-* Compatibility – tested with WordPress 6.9.1
+= 3.0 =
+* New - Media Tools tab: storage summary, missing-file detector, duplicate detection, heavy-image flags, and bulk alt-text editing
+* New - export MIME Type, Dimensions, Thumbnail/Medium/Large URLs, an "Alt Missing" flag, and Parent Post / Parent URL
+* New - filter by media type (images, video, audio, documents, archives)
+* New - filter by attachment status (attached vs. unattached/orphaned)
+* New - JSON download format, alongside CSV and on-screen display
+* New - field picker grouped into collapsible sections with quick-select presets; remembers your last selection
+* New - on-screen results table now paginates with a "Results per page" selector
+* Improvement - rewritten on a modular architecture, still PHP 5.4 compatible
+* Improvement - exports run in batches and stream straight to the browser, leaving nothing behind in wp-content/uploads
+* Improvement - removed the bundled select2 dependency; the interface now uses plain, dependency-free JavaScript
+* Improvement - the whole interface is now translatable (POT included)
+* Security - CSV formula-injection protection
+* Security - hardened output escaping, nonce verification and input sanitization across all screens
+* Fix - corrected the version mismatch and restored genuine PHP 5.4 compatibility
+
+= 2.3.1 =
+* Improvement - strengthened csv file name to prevent unauthorized discovery
+* Compatibility - tested with WordPress 6.9.1
 
 = 2.3 =
 * Fixed - patched a security vulnerability
 
-= 2.2 = 
+= 2.2 =
 * Added - additional file size data field
 * Improvement - preserves the previously selected values
 * Compatibility - tested with wordpress 6.7.1
 
-= 2.1 = 
+= 2.1 =
 * Improvement - author filtering is simplified
 * Compatibility - tested with wordpress 6.4.3
 
@@ -166,11 +187,9 @@ Yes. The plugin requires a PHP version 5.4 or higher and Wordpress version 3.1.0
 * Compatibility - tested with wordpress 6.4.1 & PHP 8.2.0
 
 = 1.0 =
-
 * initial release
 
 == Upgrade Notice ==
 
-= 2.3.1 = 
-* Improvement – strengthened csv file name to prevent unauthorized discovery
-* Compatibility – tested with WordPress 6.9.1
+= 3.0 =
+A major rewrite: new Media Tools tab (storage summary, missing-file detector, duplicate detection, heavy-image flags, bulk alt-text editing), media-type filtering, new export fields, JSON export, and streamed downloads. Still compatible back to PHP 5.4.

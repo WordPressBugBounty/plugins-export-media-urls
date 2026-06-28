@@ -1,0 +1,418 @@
+# Spanish translation for Export Media URLs.
+# Copyright (C) 2026 Atlas Gondal
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Export Media URLs 3.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/export-media-urls\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: export-media-urls\n"
+
+msgid "Below is a list of Exported Media Data:"
+msgstr "A continuación se muestra la lista de datos de medios exportados:"
+
+msgid "Total number of items"
+msgstr "Número total de elementos"
+
+msgid "Results per page:"
+msgstr "Resultados por página:"
+
+msgid "All"
+msgstr "Todos"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Siguiente"
+
+msgid "Core"
+msgstr "Principal"
+
+msgid "File"
+msgstr "Archivo"
+
+msgid "Meta"
+msgstr "Meta"
+
+msgid "Relations"
+msgstr "Relaciones"
+
+msgid "Dates"
+msgstr "Fechas"
+
+msgid "Migration"
+msgstr "Migración"
+
+msgid "SEO / Accessibility"
+msgstr "SEO / Accesibilidad"
+
+msgid "Cleanup"
+msgstr "Limpieza"
+
+msgid "Full"
+msgstr "Completo"
+
+msgid "None"
+msgstr "Ninguno"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "File Name"
+msgstr "Nombre del archivo"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "File Size"
+msgstr "Tamaño del archivo"
+
+msgid "MIME Type"
+msgstr "Tipo MIME"
+
+msgid "Dimensions"
+msgstr "Dimensiones"
+
+msgid "Thumbnail URL"
+msgstr "URL de miniatura"
+
+msgid "Medium URL"
+msgstr "URL mediana"
+
+msgid "Large URL"
+msgstr "URL grande"
+
+msgid "Caption"
+msgstr "Leyenda"
+
+msgid "Alt Text"
+msgstr "Texto alternativo"
+
+msgid "Alt Missing"
+msgstr "Sin texto alternativo"
+
+msgid "Description"
+msgstr "Descripción"
+
+msgid "Parent Post"
+msgstr "Entrada superior"
+
+msgid "Parent URL"
+msgstr "URL superior"
+
+msgid "Date Uploaded"
+msgstr "Fecha de subida"
+
+msgid "Yes"
+msgstr "Sí"
+
+msgid "No result found in that range, please reselect and try again!"
+msgstr "No se encontraron resultados en ese rango. Vuelve a seleccionar e inténtalo de nuevo."
+
+msgid "Images"
+msgstr "Imágenes"
+
+msgid "Video"
+msgstr "Vídeo"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Archives"
+msgstr "Archivos comprimidos"
+
+msgid "Documents"
+msgstr "Documentos"
+
+msgid "Other"
+msgstr "Otros"
+
+msgid "Sorry, you missed something. Please select at least one <strong>field</strong> to export, and try again. :)"
+msgstr "Vaya, faltó algo. Selecciona al menos un <strong>campo</strong> para exportar e inténtalo de nuevo. :)"
+
+msgid "Invalid/Missing download File Name!"
+msgstr "¡Nombre de archivo de descarga no válido o ausente!"
+
+msgid "Please select both dates!"
+msgstr "¡Selecciona ambas fechas!"
+
+msgid "Start date cannot be greater than end date!"
+msgstr "¡La fecha de inicio no puede ser posterior a la fecha de fin!"
+
+msgid "You do not have sufficient permissions to access this page."
+msgstr "No tienes permisos suficientes para acceder a esta página."
+
+msgid "Security token validation failed!"
+msgstr "¡Error de validación del token de seguridad!"
+
+msgid "Invalid export type."
+msgstr "Tipo de exportación no válido."
+
+msgid "Could not activate plugin: PHP version error"
+msgstr "No se pudo activar el plugin: error de versión de PHP"
+
+msgid "PLUGIN:"
+msgstr "PLUGIN:"
+
+msgid "You are using PHP version"
+msgstr "Estás usando la versión de PHP"
+
+msgid "This plugin requires PHP version %s or greater."
+msgstr "Este plugin requiere la versión de PHP %s o superior."
+
+msgid "WordPress itself recommends using PHP version 7.4 or greater"
+msgstr "El propio WordPress recomienda usar la versión de PHP 7.4 o superior"
+
+msgid "Official WordPress requirements"
+msgstr "Requisitos oficiales de WordPress"
+
+msgid "Please upgrade your PHP version or contact your Server administrator."
+msgstr "Actualiza tu versión de PHP o ponte en contacto con el administrador de tu servidor."
+
+msgid "Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!"
+msgstr "¿Te gustó %1$s? Déjanos una valoración de %2$s. ¡Agradecemos mucho tu apoyo!"
+
+msgid "All Media"
+msgstr "Todos los medios"
+
+msgid "Attached (used by a post)"
+msgstr "Adjunto (usado por una entrada)"
+
+msgid "Unattached (orphaned)"
+msgstr "Sin adjuntar (huérfano)"
+
+msgid "CSV File"
+msgstr "Archivo CSV"
+
+msgid "JSON File"
+msgstr "Archivo JSON"
+
+msgid "Hide Filter Options"
+msgstr "Ocultar opciones de filtro"
+
+msgid "Show Filter Options"
+msgstr "Mostrar opciones de filtro"
+
+msgid "Hide Advanced Options"
+msgstr "Ocultar opciones avanzadas"
+
+msgid "Show Advanced Options"
+msgstr "Mostrar opciones avanzadas"
+
+msgid "Export every Media Library URL as CSV or JSON, or view them right here."
+msgstr "Exporta todas las URL de la biblioteca de medios como CSV o JSON, o visualízalas aquí mismo."
+
+msgid "Export Fields:"
+msgstr "Campos a exportar:"
+
+msgid "Presets:"
+msgstr "Preajustes:"
+
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+msgid "Media Type:"
+msgstr "Tipo de medio:"
+
+msgid "Attachment Status:"
+msgstr "Estado del adjunto:"
+
+msgid "By Author:"
+msgstr "Por autor:"
+
+msgid "Date Range:"
+msgstr "Rango de fechas:"
+
+msgid "Between Dates"
+msgstr "Entre fechas"
+
+msgid "From:"
+msgstr "Desde:"
+
+msgid "To:"
+msgstr "Hasta:"
+
+msgid "Number of Items:"
+msgstr "Número de elementos:"
+
+msgid "Specify a range to extract. Useful in case of a Memory Out error on large libraries!"
+msgstr "Especifica un rango para extraer. ¡Útil en caso de error de memoria en bibliotecas grandes!"
+
+msgid "Specify Range"
+msgstr "Especificar rango"
+
+msgid "Download File Name:"
+msgstr "Nombre del archivo de descarga:"
+
+msgid "Download Format:"
+msgstr "Formato de descarga:"
+
+msgid "Download"
+msgstr "Descargar"
+
+msgid "Display Here"
+msgstr "Mostrar aquí"
+
+msgid "Want to Support?"
+msgstr "¿Quieres apoyar?"
+
+msgid "If you enjoyed the plugin, and want to support:"
+msgstr "Si te ha gustado el plugin y quieres apoyar:"
+
+msgid "Hire me"
+msgstr "Contrátame"
+
+msgid "on a project"
+msgstr "para un proyecto"
+
+msgid "Buy me a Coffee"
+msgstr "Invítame a un café"
+
+msgid "Wanna say Thanks?"
+msgstr "¿Quieres dar las gracias?"
+
+msgid "Leave"
+msgstr "Deja"
+
+msgid "rating"
+msgstr "valoración"
+
+msgid "Follow me on X:"
+msgstr "Sígueme en X:"
+
+msgid "Got a Problem?"
+msgstr "¿Tienes un problema?"
+
+msgid "Want to report a bug or suggest a feature? You can:"
+msgstr "¿Quieres informar de un error o sugerir una función? Puedes:"
+
+msgid "Create"
+msgstr "Crear"
+
+msgid "Support Ticket"
+msgstr "Ticket de soporte"
+
+msgid "Write me an"
+msgstr "Escríbeme un"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Developed by:"
+msgstr "Desarrollado por:"
+
+msgid "Export"
+msgstr "Exportar"
+
+msgid "Summary"
+msgstr "Resumen"
+
+msgid "Missing Files"
+msgstr "Archivos faltantes"
+
+msgid "Duplicates"
+msgstr "Duplicados"
+
+msgid "Heavy Images"
+msgstr "Imágenes pesadas"
+
+msgid "%1$s–%2$s of %3$s"
+msgstr "%1$s–%2$s de %3$s"
+
+msgid "Prev"
+msgstr "Ant."
+
+msgid "Page %1$s of %2$s"
+msgstr "Página %1$s de %2$s"
+
+msgid "Items per page:"
+msgstr "Elementos por página:"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "Audit and clean up your Media Library."
+msgstr "Audita y limpia tu biblioteca de medios."
+
+msgid "Find library entries whose file is gone from disk."
+msgstr "Encuentra entradas de la biblioteca cuyo archivo ya no está en el disco."
+
+msgid "Spot byte-for-byte identical files wasting space."
+msgstr "Detecta archivos idénticos byte a byte que ocupan espacio."
+
+msgid "Catch oversized images that slow your pages."
+msgstr "Detecta imágenes demasiado grandes que ralentizan tus páginas."
+
+msgid "Fix missing alt text for SEO and accessibility."
+msgstr "Corrige el texto alternativo ausente para el SEO y la accesibilidad."
+
+msgid "At a Glance"
+msgstr "De un vistazo"
+
+msgid "Total Items"
+msgstr "Elementos totales"
+
+msgid "Disk Usage (uploads)"
+msgstr "Uso de disco (subidas)"
+
+msgid "Counts are read straight from the database, so this stays instant on large libraries."
+msgstr "Los recuentos se leen directamente de la base de datos, por lo que es instantáneo incluso en bibliotecas grandes."
+
+msgid "Maintenance Tools"
+msgstr "Herramientas de mantenimiento"
+
+msgid "Media items that exist in the database but whose file is no longer on disk."
+msgstr "Elementos de medios que existen en la base de datos pero cuyo archivo ya no está en el disco."
+
+msgid "No missing files on this page."
+msgstr "No hay archivos faltantes en esta página."
+
+msgid "Expected File Path"
+msgstr "Ruta de archivo esperada"
+
+msgid "Duplicate Files"
+msgstr "Archivos duplicados"
+
+msgid "Attachments whose files are byte-for-byte identical (same size and content hash). Files are compared within the current page; choose \"All\" for a complete cross-library scan."
+msgstr "Adjuntos cuyos archivos son idénticos byte a byte (mismo tamaño y hash de contenido). Los archivos se comparan dentro de la página actual; elige «Todos» para un análisis completo de toda la biblioteca."
+
+msgid "No duplicate files on this page."
+msgstr "No hay archivos duplicados en esta página."
+
+msgid "Duplicate group %1$d — %2$s each"
+msgstr "Grupo de duplicados %1$d — %2$s cada uno"
+
+msgid "Images larger than %1$s, or wider/taller than %2$d px — likely candidates for optimization."
+msgstr "Imágenes de más de %1$s, o de más de %2$d px de ancho/alto: probables candidatas para optimizar."
+
+msgid "No oversized images on this page."
+msgstr "No hay imágenes demasiado grandes en esta página."
+
+msgid "Bulk Alt-Text Editing"
+msgstr "Edición masiva de texto alternativo"
+
+msgid "Edit alt text for the images on this page, then save. Rows highlighted in yellow have no alt text."
+msgstr "Edita el texto alternativo de las imágenes de esta página y guarda. Las filas resaltadas en amarillo no tienen texto alternativo."
+
+msgid "No images on this page."
+msgstr "No hay imágenes en esta página."
+
+msgid "Image"
+msgstr "Imagen"
+
+msgid "Save Alt Text"
+msgstr "Guardar texto alternativo"
+
+msgid "Updated alt text for %d image."
+msgid_plural "Updated alt text for %d images."
+msgstr[0] "Se actualizó el texto alternativo de %d imagen."
+msgstr[1] "Se actualizó el texto alternativo de %d imágenes."
+

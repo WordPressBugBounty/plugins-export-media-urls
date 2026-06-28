@@ -1,0 +1,634 @@
+# Copyright (C) 2026 Atlas Gondal
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Export Media URLs 3.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/export-media-urls\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-06-28T04:34:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: export-media-urls\n"
+
+#. Plugin Name of the plugin
+#: export-media-urls.php
+#: classes/class-functions.php:115
+#: export-media-urls.php:119
+#: export-media-urls.php:126
+#: export-media-urls.php:130
+msgid "Export Media URLs"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: export-media-urls.php
+msgid "https://wordpress.org/plugins/export-media-urls/"
+msgstr ""
+
+#. Description of the plugin
+#: export-media-urls.php
+msgid "Extract every Media Library URL along with title, file name, size, dimensions, alt text, caption, MIME type, parent post and more. Filter by media type, attachment status, author and date range. Display in the dashboard or download as CSV or JSON. Useful for migrations, SEO/accessibility audits and library cleanup."
+msgstr ""
+
+#. Author of the plugin
+#: export-media-urls.php
+msgid "Atlas Gondal"
+msgstr ""
+
+#. Author URI of the plugin
+#: export-media-urls.php
+msgid "https://AtlasGondal.com/"
+msgstr ""
+
+#: classes/class-exporter.php:115
+msgid "Below is a list of Exported Media Data:"
+msgstr ""
+
+#: classes/class-exporter.php:116
+msgid "Total number of items"
+msgstr ""
+
+#: classes/class-exporter.php:120
+msgid "Results per page:"
+msgstr ""
+
+#: classes/class-exporter.php:125
+#: views/settings-page.php:71
+#: views/settings-page.php:81
+#: views/settings-page.php:198
+#: views/settings-page.php:215
+#: views/tools-tab.php:124
+msgid "All"
+msgstr ""
+
+#: classes/class-exporter.php:150
+msgid "Previous"
+msgstr ""
+
+#: classes/class-exporter.php:152
+#: views/tools-tab.php:110
+#: views/tools-tab.php:112
+msgid "Next"
+msgstr ""
+
+#: classes/class-fields.php:29
+msgid "Core"
+msgstr ""
+
+#: classes/class-fields.php:30
+msgid "File"
+msgstr ""
+
+#: classes/class-fields.php:31
+msgid "Meta"
+msgstr ""
+
+#: classes/class-fields.php:32
+msgid "Relations"
+msgstr ""
+
+#: classes/class-fields.php:33
+msgid "Dates"
+msgstr ""
+
+#: classes/class-fields.php:45
+msgid "Migration"
+msgstr ""
+
+#: classes/class-fields.php:46
+msgid "SEO / Accessibility"
+msgstr ""
+
+#: classes/class-fields.php:47
+msgid "Cleanup"
+msgstr ""
+
+#: classes/class-fields.php:48
+msgid "Full"
+msgstr ""
+
+#: classes/class-fields.php:49
+#: views/settings-page.php:151
+msgid "None"
+msgstr ""
+
+#: classes/class-fields.php:62
+#: views/tools-tab.php:237
+#: views/tools-tab.php:301
+msgid "ID"
+msgstr ""
+
+#: classes/class-fields.php:63
+#: views/tools-tab.php:238
+#: views/tools-tab.php:302
+#: views/tools-tab.php:332
+msgid "Title"
+msgstr ""
+
+#: classes/class-fields.php:64
+msgid "File Name"
+msgstr ""
+
+#: classes/class-fields.php:65
+msgid "URL"
+msgstr ""
+
+#: classes/class-fields.php:68
+#: views/tools-tab.php:303
+msgid "File Size"
+msgstr ""
+
+#: classes/class-fields.php:69
+msgid "MIME Type"
+msgstr ""
+
+#: classes/class-fields.php:70
+#: views/tools-tab.php:304
+msgid "Dimensions"
+msgstr ""
+
+#: classes/class-fields.php:71
+msgid "Thumbnail URL"
+msgstr ""
+
+#: classes/class-fields.php:72
+msgid "Medium URL"
+msgstr ""
+
+#: classes/class-fields.php:73
+msgid "Large URL"
+msgstr ""
+
+#: classes/class-fields.php:76
+msgid "Caption"
+msgstr ""
+
+#: classes/class-fields.php:77
+#: views/tab-nav.php:26
+#: views/tools-tab.php:179
+#: views/tools-tab.php:333
+msgid "Alt Text"
+msgstr ""
+
+#: classes/class-fields.php:78
+msgid "Alt Missing"
+msgstr ""
+
+#: classes/class-fields.php:79
+msgid "Description"
+msgstr ""
+
+#: classes/class-fields.php:82
+msgid "Parent Post"
+msgstr ""
+
+#: classes/class-fields.php:83
+msgid "Parent URL"
+msgstr ""
+
+#: classes/class-fields.php:86
+msgid "Date Uploaded"
+msgstr ""
+
+#: classes/class-fields.php:235
+msgid "Yes"
+msgstr ""
+
+#: classes/class-functions.php:114
+#: classes/class-functions.php:161
+msgid "No result found in that range, please reselect and try again!"
+msgstr ""
+
+#: classes/class-media-tools.php:309
+#: views/settings-page.php:63
+msgid "Images"
+msgstr ""
+
+#: classes/class-media-tools.php:312
+#: views/settings-page.php:64
+msgid "Video"
+msgstr ""
+
+#: classes/class-media-tools.php:315
+#: views/settings-page.php:65
+msgid "Audio"
+msgstr ""
+
+#: classes/class-media-tools.php:322
+#: views/settings-page.php:67
+msgid "Archives"
+msgstr ""
+
+#: classes/class-media-tools.php:325
+#: views/settings-page.php:66
+msgid "Documents"
+msgstr ""
+
+#: classes/class-media-tools.php:327
+msgid "Other"
+msgstr ""
+
+#: classes/class-request.php:81
+msgid "Sorry, you missed something. Please select at least one <strong>field</strong> to export, and try again. :)"
+msgstr ""
+
+#: classes/class-request.php:85
+msgid "Invalid/Missing download File Name!"
+msgstr ""
+
+#: classes/class-request.php:90
+msgid "Please select both dates!"
+msgstr ""
+
+#: classes/class-request.php:93
+msgid "Start date cannot be greater than end date!"
+msgstr ""
+
+#: export-media-urls.php:110
+#: views/settings-page.php:16
+#: views/tools-tab.php:15
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: export-media-urls.php:118
+#: views/settings-page.php:297
+#: views/settings-page.php:303
+#: views/tools-tab.php:151
+msgid "Security token validation failed!"
+msgstr ""
+
+#: export-media-urls.php:130
+msgid "Invalid export type."
+msgstr ""
+
+#: export-media-urls.php:148
+#: export-media-urls.php:156
+msgid "Could not activate plugin: PHP version error"
+msgstr ""
+
+#: export-media-urls.php:149
+msgid "PLUGIN:"
+msgstr ""
+
+#: export-media-urls.php:150
+msgid "You are using PHP version"
+msgstr ""
+
+#. translators: %s: minimum required PHP version.
+#: export-media-urls.php:152
+#, php-format
+msgid "This plugin requires PHP version %s or greater."
+msgstr ""
+
+#: export-media-urls.php:153
+msgid "WordPress itself recommends using PHP version 7.4 or greater"
+msgstr ""
+
+#: export-media-urls.php:154
+msgid "Official WordPress requirements"
+msgstr ""
+
+#: export-media-urls.php:155
+msgid "Please upgrade your PHP version or contact your Server administrator."
+msgstr ""
+
+#. translators: 1: plugin name, 2: five-star rating link.
+#: export-media-urls.php:190
+#, php-format
+msgid "Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!"
+msgstr ""
+
+#: views/settings-page.php:62
+msgid "All Media"
+msgstr ""
+
+#: views/settings-page.php:72
+msgid "Attached (used by a post)"
+msgstr ""
+
+#: views/settings-page.php:73
+msgid "Unattached (orphaned)"
+msgstr ""
+
+#: views/settings-page.php:77
+msgid "CSV File"
+msgstr ""
+
+#: views/settings-page.php:78
+msgid "JSON File"
+msgstr ""
+
+#: views/settings-page.php:106
+msgid "Hide Filter Options"
+msgstr ""
+
+#: views/settings-page.php:106
+msgid "Show Filter Options"
+msgstr ""
+
+#: views/settings-page.php:108
+msgid "Hide Advanced Options"
+msgstr ""
+
+#: views/settings-page.php:108
+msgid "Show Advanced Options"
+msgstr ""
+
+#: views/settings-page.php:118
+msgid "Export every Media Library URL as CSV or JSON, or view them right here."
+msgstr ""
+
+#: views/settings-page.php:130
+msgid "Export Fields:"
+msgstr ""
+
+#: views/settings-page.php:133
+msgid "Presets:"
+msgstr ""
+
+#: views/settings-page.php:149
+msgid "Select all"
+msgstr ""
+
+#: views/settings-page.php:164
+msgid "Media Type:"
+msgstr ""
+
+#: views/settings-page.php:178
+msgid "Attachment Status:"
+msgstr ""
+
+#: views/settings-page.php:187
+msgid "By Author:"
+msgstr ""
+
+#: views/settings-page.php:196
+msgid "Date Range:"
+msgstr ""
+
+#: views/settings-page.php:199
+msgid "Between Dates"
+msgstr ""
+
+#: views/settings-page.php:201
+#: views/settings-page.php:218
+msgid "From:"
+msgstr ""
+
+#: views/settings-page.php:202
+#: views/settings-page.php:219
+msgid "To:"
+msgstr ""
+
+#: views/settings-page.php:213
+msgid "Number of Items:"
+msgstr ""
+
+#: views/settings-page.php:213
+msgid "Specify a range to extract. Useful in case of a Memory Out error on large libraries!"
+msgstr ""
+
+#: views/settings-page.php:216
+msgid "Specify Range"
+msgstr ""
+
+#: views/settings-page.php:225
+msgid "Download File Name:"
+msgstr ""
+
+#: views/settings-page.php:232
+msgid "Download Format:"
+msgstr ""
+
+#: views/settings-page.php:243
+msgid "Download"
+msgstr ""
+
+#: views/settings-page.php:244
+msgid "Display Here"
+msgstr ""
+
+#: views/settings-page.php:261
+msgid "Want to Support?"
+msgstr ""
+
+#: views/settings-page.php:263
+msgid "If you enjoyed the plugin, and want to support:"
+msgstr ""
+
+#: views/settings-page.php:265
+msgid "Hire me"
+msgstr ""
+
+#: views/settings-page.php:265
+msgid "on a project"
+msgstr ""
+
+#: views/settings-page.php:266
+msgid "Buy me a Coffee"
+msgstr ""
+
+#: views/settings-page.php:269
+msgid "Wanna say Thanks?"
+msgstr ""
+
+#: views/settings-page.php:271
+msgid "Leave"
+msgstr ""
+
+#: views/settings-page.php:271
+msgid "rating"
+msgstr ""
+
+#: views/settings-page.php:272
+msgid "Follow me on X:"
+msgstr ""
+
+#: views/settings-page.php:275
+msgid "Got a Problem?"
+msgstr ""
+
+#: views/settings-page.php:276
+msgid "Want to report a bug or suggest a feature? You can:"
+msgstr ""
+
+#: views/settings-page.php:278
+msgid "Create"
+msgstr ""
+
+#: views/settings-page.php:278
+msgid "Support Ticket"
+msgstr ""
+
+#: views/settings-page.php:279
+msgid "Write me an"
+msgstr ""
+
+#: views/settings-page.php:279
+msgid "Email"
+msgstr ""
+
+#: views/settings-page.php:282
+msgid "Developed by:"
+msgstr ""
+
+#: views/tab-nav.php:21
+msgid "Export"
+msgstr ""
+
+#: views/tab-nav.php:22
+msgid "Summary"
+msgstr ""
+
+#: views/tab-nav.php:23
+#: views/tools-tab.php:164
+#: views/tools-tab.php:229
+msgid "Missing Files"
+msgstr ""
+
+#: views/tab-nav.php:24
+#: views/tools-tab.php:169
+msgid "Duplicates"
+msgstr ""
+
+#: views/tab-nav.php:25
+#: views/tools-tab.php:174
+#: views/tools-tab.php:288
+msgid "Heavy Images"
+msgstr ""
+
+#. translators: 1: first item number, 2: last item number, 3: total items.
+#: views/tools-tab.php:94
+#, php-format
+msgid "%1$s–%2$s of %3$s"
+msgstr ""
+
+#: views/tools-tab.php:99
+#: views/tools-tab.php:101
+msgid "Prev"
+msgstr ""
+
+#. translators: 1: current page, 2: total pages.
+#: views/tools-tab.php:106
+#, php-format
+msgid "Page %1$s of %2$s"
+msgstr ""
+
+#: views/tools-tab.php:120
+msgid "Items per page:"
+msgstr ""
+
+#: views/tools-tab.php:129
+msgid "Apply"
+msgstr ""
+
+#: views/tools-tab.php:140
+msgid "Audit and clean up your Media Library."
+msgstr ""
+
+#. translators: %d: number of images whose alt text was updated.
+#: views/tools-tab.php:147
+#, php-format
+msgid "Updated alt text for %d image."
+msgid_plural "Updated alt text for %d images."
+msgstr[0] ""
+msgstr[1] ""
+
+#: views/tools-tab.php:165
+msgid "Find library entries whose file is gone from disk."
+msgstr ""
+
+#: views/tools-tab.php:170
+msgid "Spot byte-for-byte identical files wasting space."
+msgstr ""
+
+#: views/tools-tab.php:175
+msgid "Catch oversized images that slow your pages."
+msgstr ""
+
+#: views/tools-tab.php:180
+msgid "Fix missing alt text for SEO and accessibility."
+msgstr ""
+
+#: views/tools-tab.php:184
+msgid "At a Glance"
+msgstr ""
+
+#: views/tools-tab.php:193
+msgid "Total Items"
+msgstr ""
+
+#: views/tools-tab.php:198
+msgid "Disk Usage (uploads)"
+msgstr ""
+
+#: views/tools-tab.php:203
+msgid "Counts are read straight from the database, so this stays instant on large libraries."
+msgstr ""
+
+#: views/tools-tab.php:205
+msgid "Maintenance Tools"
+msgstr ""
+
+#: views/tools-tab.php:230
+msgid "Media items that exist in the database but whose file is no longer on disk."
+msgstr ""
+
+#: views/tools-tab.php:233
+msgid "No missing files on this page."
+msgstr ""
+
+#: views/tools-tab.php:239
+msgid "Expected File Path"
+msgstr ""
+
+#: views/tools-tab.php:256
+msgid "Duplicate Files"
+msgstr ""
+
+#: views/tools-tab.php:257
+msgid "Attachments whose files are byte-for-byte identical (same size and content hash). Files are compared within the current page; choose \"All\" for a complete cross-library scan."
+msgstr ""
+
+#: views/tools-tab.php:260
+msgid "No duplicate files on this page."
+msgstr ""
+
+#. translators: 1: group number, 2: human-readable file size.
+#: views/tools-tab.php:268
+#, php-format
+msgid "Duplicate group %1$d — %2$s each"
+msgstr ""
+
+#. translators: 1: file size threshold, 2: pixel dimension threshold.
+#: views/tools-tab.php:292
+#, php-format
+msgid "Images larger than %1$s, or wider/taller than %2$d px — likely candidates for optimization."
+msgstr ""
+
+#: views/tools-tab.php:297
+msgid "No oversized images on this page."
+msgstr ""
+
+#: views/tools-tab.php:322
+msgid "Bulk Alt-Text Editing"
+msgstr ""
+
+#: views/tools-tab.php:323
+msgid "Edit alt text for the images on this page, then save. Rows highlighted in yellow have no alt text."
+msgstr ""
+
+#: views/tools-tab.php:326
+msgid "No images on this page."
+msgstr ""
+
+#: views/tools-tab.php:331
+msgid "Image"
+msgstr ""
+
+#: views/tools-tab.php:352
+msgid "Save Alt Text"
+msgstr ""
