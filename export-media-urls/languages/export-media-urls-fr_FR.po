@@ -1,418 +1,664 @@
-# French translation for Export Media URLs.
-# Copyright (C) 2026 Atlas Gondal
-# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Export Media URLs 3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/export-media-urls\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-10T05:48:55+00:00\n"
+"PO-Revision-Date: 2026-07-10T05:48:55+00:00\n"
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: export-media-urls\n"
 
+#: classes/class-exporter.php:115
 msgid "Below is a list of Exported Media Data:"
 msgstr "Voici la liste des données de médias exportées :"
 
+#: classes/class-exporter.php:116
 msgid "Total number of items"
 msgstr "Nombre total d’éléments"
 
+#: classes/class-exporter.php:120
 msgid "Results per page:"
 msgstr "Résultats par page :"
 
+#: classes/class-exporter.php:125
+#: views/settings-page.php:71
+#: views/settings-page.php:81
+#: views/settings-page.php:222
+#: views/settings-page.php:239
+#: views/tools-tab.php:125
 msgid "All"
 msgstr "Tous"
 
+#: classes/class-exporter.php:150
 msgid "Previous"
 msgstr "Précédent"
 
+#: classes/class-exporter.php:152
+#: views/tools-tab.php:158
+#: views/tools-tab.php:160
 msgid "Next"
 msgstr "Suivant"
 
+#: classes/class-fields.php:29
 msgid "Core"
 msgstr "Principal"
 
+#: classes/class-fields.php:30
 msgid "File"
 msgstr "Fichier"
 
+#: classes/class-fields.php:31
 msgid "Meta"
 msgstr "Méta"
 
+#: classes/class-fields.php:32
 msgid "Relations"
 msgstr "Relations"
 
+#: classes/class-fields.php:33
 msgid "Dates"
 msgstr "Dates"
 
+#: classes/class-fields.php:45
 msgid "Migration"
 msgstr "Migration"
 
+#: classes/class-fields.php:46
 msgid "SEO / Accessibility"
 msgstr "SEO / Accessibilité"
 
+#: classes/class-fields.php:48
 msgid "Cleanup"
 msgstr "Nettoyage"
 
+#: classes/class-fields.php:49
 msgid "Full"
 msgstr "Complet"
 
+#: classes/class-fields.php:50
+#: views/settings-page.php:157
 msgid "None"
 msgstr "Aucun"
 
+#: classes/class-fields.php:63
+#: views/tools-tab.php:267
+#: views/tools-tab.php:333
 msgid "ID"
 msgstr "ID"
 
+#: classes/class-fields.php:64
+#: views/tools-tab.php:268
+#: views/tools-tab.php:334
+#: views/tools-tab.php:366
 msgid "Title"
 msgstr "Titre"
 
+#: classes/class-fields.php:65
 msgid "File Name"
 msgstr "Nom du fichier"
 
+#: classes/class-fields.php:66
 msgid "URL"
 msgstr "URL"
 
+#: classes/class-fields.php:69
+#: views/tools-tab.php:335
 msgid "File Size"
 msgstr "Taille du fichier"
 
+#: classes/class-fields.php:70
 msgid "MIME Type"
 msgstr "Type MIME"
 
+#: classes/class-fields.php:71
+#: views/tools-tab.php:336
 msgid "Dimensions"
 msgstr "Dimensions"
 
+#: classes/class-fields.php:72
 msgid "Thumbnail URL"
 msgstr "URL de la miniature"
 
+#: classes/class-fields.php:73
 msgid "Medium URL"
 msgstr "URL moyenne"
 
+#: classes/class-fields.php:74
 msgid "Large URL"
 msgstr "URL grande"
 
+#: classes/class-fields.php:77
 msgid "Caption"
 msgstr "Légende"
 
+#: classes/class-fields.php:78
+#: views/tab-nav.php:26
+#: views/tools-tab.php:210
+#: views/tools-tab.php:367
 msgid "Alt Text"
 msgstr "Texte alternatif"
 
+#: classes/class-fields.php:79
 msgid "Alt Missing"
 msgstr "Texte alternatif manquant"
 
+#: classes/class-fields.php:80
 msgid "Description"
 msgstr "Description"
 
-msgid "Parent Post"
-msgstr "Publication parente"
-
-msgid "Parent URL"
-msgstr "URL parente"
-
+#: classes/class-fields.php:91
 msgid "Date Uploaded"
 msgstr "Date de mise en ligne"
 
+#: classes/class-fields.php:268
+#: classes/class-fields.php:335
 msgid "Yes"
 msgstr "Oui"
 
+#: classes/class-functions.php:123
+#: classes/class-functions.php:170
 msgid "No result found in that range, please reselect and try again!"
 msgstr "Aucun résultat trouvé dans cette plage, veuillez resélectionner et réessayer !"
 
+#: classes/class-media-tools.php:348
+#: views/settings-page.php:63
 msgid "Images"
 msgstr "Images"
 
+#: classes/class-media-tools.php:351
+#: views/settings-page.php:64
 msgid "Video"
 msgstr "Vidéo"
 
+#: classes/class-media-tools.php:354
+#: views/settings-page.php:65
 msgid "Audio"
 msgstr "Audio"
 
+#: classes/class-media-tools.php:361
+#: views/settings-page.php:67
 msgid "Archives"
 msgstr "Archives"
 
+#: classes/class-media-tools.php:364
+#: views/settings-page.php:66
 msgid "Documents"
 msgstr "Documents"
 
+#: classes/class-media-tools.php:366
 msgid "Other"
 msgstr "Autre"
 
+#: classes/class-request.php:81
 msgid "Sorry, you missed something. Please select at least one <strong>field</strong> to export, and try again. :)"
 msgstr "Désolé, il manque quelque chose. Veuillez sélectionner au moins un <strong>champ</strong> à exporter, puis réessayer. :)"
 
+#: classes/class-request.php:85
 msgid "Invalid/Missing download File Name!"
 msgstr "Nom de fichier de téléchargement invalide ou manquant !"
 
+#: classes/class-request.php:90
 msgid "Please select both dates!"
 msgstr "Veuillez sélectionner les deux dates !"
 
+#: classes/class-request.php:93
 msgid "Start date cannot be greater than end date!"
 msgstr "La date de début ne peut pas être postérieure à la date de fin !"
 
+#: export-media-urls.php:110
+#: views/settings-page.php:16
+#: views/tools-tab.php:15
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Vous n’avez pas les autorisations suffisantes pour accéder à cette page."
 
+#: export-media-urls.php:118
+#: views/settings-page.php:321
+#: views/settings-page.php:327
+#: views/tools-tab.php:182
 msgid "Security token validation failed!"
 msgstr "Échec de la validation du jeton de sécurité !"
 
+#: export-media-urls.php:130
 msgid "Invalid export type."
 msgstr "Type d’exportation invalide."
 
+#: export-media-urls.php:148
+#: export-media-urls.php:156
 msgid "Could not activate plugin: PHP version error"
 msgstr "Impossible d’activer l’extension : erreur de version de PHP"
 
+#: export-media-urls.php:149
 msgid "PLUGIN:"
 msgstr "EXTENSION :"
 
+#: export-media-urls.php:150
 msgid "You are using PHP version"
 msgstr "Vous utilisez la version de PHP"
 
+#. translators: %s: minimum required PHP version.
+#: export-media-urls.php:152
+#, php-format
 msgid "This plugin requires PHP version %s or greater."
 msgstr "Cette extension nécessite la version de PHP %s ou supérieure."
 
+#: export-media-urls.php:153
 msgid "WordPress itself recommends using PHP version 7.4 or greater"
 msgstr "WordPress lui-même recommande d’utiliser la version de PHP 7.4 ou supérieure"
 
+#: export-media-urls.php:154
 msgid "Official WordPress requirements"
 msgstr "Configuration requise officielle de WordPress"
 
+#: export-media-urls.php:155
 msgid "Please upgrade your PHP version or contact your Server administrator."
 msgstr "Veuillez mettre à jour votre version de PHP ou contacter l’administrateur de votre serveur."
 
+#. translators: 1: plugin name, 2: five-star rating link.
+#: export-media-urls.php:190
+#, php-format
 msgid "Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!"
 msgstr "Vous avez aimé %1$s ? Laissez-nous une note de %2$s. Nous apprécions beaucoup votre soutien !"
 
+#: views/settings-page.php:62
 msgid "All Media"
 msgstr "Tous les médias"
 
+#: views/settings-page.php:72
 msgid "Attached (used by a post)"
 msgstr "Attaché (utilisé par une publication)"
 
+#: views/settings-page.php:73
 msgid "Unattached (orphaned)"
 msgstr "Non attaché (orphelin)"
 
+#: views/settings-page.php:77
 msgid "CSV File"
 msgstr "Fichier CSV"
 
+#: views/settings-page.php:78
 msgid "JSON File"
 msgstr "Fichier JSON"
 
+#: views/settings-page.php:112
 msgid "Hide Filter Options"
 msgstr "Masquer les options de filtre"
 
+#: views/settings-page.php:112
 msgid "Show Filter Options"
 msgstr "Afficher les options de filtre"
 
+#: views/settings-page.php:114
 msgid "Hide Advanced Options"
 msgstr "Masquer les options avancées"
 
+#: views/settings-page.php:114
 msgid "Show Advanced Options"
 msgstr "Afficher les options avancées"
 
+#: views/settings-page.php:124
 msgid "Export every Media Library URL as CSV or JSON, or view them right here."
 msgstr "Exportez toutes les URL de la médiathèque au format CSV ou JSON, ou affichez-les ici même."
 
+#: views/settings-page.php:136
 msgid "Export Fields:"
 msgstr "Champs à exporter :"
 
+#: views/settings-page.php:139
 msgid "Presets:"
 msgstr "Préréglages :"
 
+#: views/settings-page.php:155
 msgid "Select all"
 msgstr "Tout sélectionner"
 
+#: views/settings-page.php:188
 msgid "Media Type:"
 msgstr "Type de média :"
 
+#: views/settings-page.php:202
 msgid "Attachment Status:"
 msgstr "Statut du fichier joint :"
 
+#: views/settings-page.php:211
 msgid "By Author:"
 msgstr "Par auteur :"
 
+#: views/settings-page.php:220
 msgid "Date Range:"
 msgstr "Plage de dates :"
 
+#: views/settings-page.php:223
 msgid "Between Dates"
 msgstr "Entre deux dates"
 
+#: views/settings-page.php:225
+#: views/settings-page.php:242
 msgid "From:"
 msgstr "Du :"
 
+#: views/settings-page.php:226
+#: views/settings-page.php:243
 msgid "To:"
 msgstr "Au :"
 
+#: views/settings-page.php:237
 msgid "Number of Items:"
 msgstr "Nombre d’éléments :"
 
+#: views/settings-page.php:237
 msgid "Specify a range to extract. Useful in case of a Memory Out error on large libraries!"
 msgstr "Spécifiez une plage à extraire. Utile en cas d’erreur de mémoire sur les grandes médiathèques !"
 
+#: views/settings-page.php:240
 msgid "Specify Range"
 msgstr "Spécifier une plage"
 
+#: views/settings-page.php:249
 msgid "Download File Name:"
 msgstr "Nom du fichier de téléchargement :"
 
+#: views/settings-page.php:256
 msgid "Download Format:"
 msgstr "Format de téléchargement :"
 
+#: views/settings-page.php:267
 msgid "Download"
 msgstr "Télécharger"
 
+#: views/settings-page.php:268
 msgid "Display Here"
 msgstr "Afficher ici"
 
+#: views/settings-page.php:285
 msgid "Want to Support?"
 msgstr "Envie de soutenir ?"
 
+#: views/settings-page.php:287
 msgid "If you enjoyed the plugin, and want to support:"
 msgstr "Si vous avez aimé l’extension et souhaitez la soutenir :"
 
+#: views/settings-page.php:289
 msgid "Hire me"
 msgstr "Engagez-moi"
 
+#: views/settings-page.php:289
 msgid "on a project"
 msgstr "sur un projet"
 
+#: views/settings-page.php:290
 msgid "Buy me a Coffee"
 msgstr "Offrez-moi un café"
 
+#: views/settings-page.php:293
 msgid "Wanna say Thanks?"
 msgstr "Envie de dire merci ?"
 
+#: views/settings-page.php:295
 msgid "Leave"
 msgstr "Laissez"
 
+#: views/settings-page.php:295
 msgid "rating"
 msgstr "une note"
 
+#: views/settings-page.php:296
 msgid "Follow me on X:"
 msgstr "Suivez-moi sur X :"
 
+#: views/settings-page.php:299
 msgid "Got a Problem?"
 msgstr "Un problème ?"
 
+#: views/settings-page.php:300
 msgid "Want to report a bug or suggest a feature? You can:"
 msgstr "Vous voulez signaler un bug ou suggérer une fonctionnalité ? Vous pouvez :"
 
+#: views/settings-page.php:302
 msgid "Create"
 msgstr "Créer"
 
+#: views/settings-page.php:302
 msgid "Support Ticket"
 msgstr "un ticket d’assistance"
 
+#: views/settings-page.php:303
 msgid "Write me an"
 msgstr "Écrivez-moi un"
 
+#: views/settings-page.php:303
 msgid "Email"
 msgstr "e-mail"
 
+#: views/settings-page.php:306
 msgid "Developed by:"
 msgstr "Développé par :"
 
+#: views/tab-nav.php:21
 msgid "Export"
 msgstr "Exporter"
 
+#: views/tab-nav.php:22
 msgid "Summary"
 msgstr "Résumé"
 
+#: views/tab-nav.php:23
+#: views/tools-tab.php:195
+#: views/tools-tab.php:259
 msgid "Missing Files"
 msgstr "Fichiers manquants"
 
+#: views/tab-nav.php:24
+#: views/tools-tab.php:200
 msgid "Duplicates"
 msgstr "Doublons"
 
+#: views/tab-nav.php:25
+#: views/tools-tab.php:205
+#: views/tools-tab.php:320
 msgid "Heavy Images"
 msgstr "Images lourdes"
 
-msgid "%1$s–%2$s of %3$s"
-msgstr "%1$s–%2$s sur %3$s"
-
+#: views/tools-tab.php:147
+#: views/tools-tab.php:149
 msgid "Prev"
 msgstr "Préc."
 
-msgid "Page %1$s of %2$s"
-msgstr "Page %1$s sur %2$s"
-
+#: views/tools-tab.php:121
 msgid "Items per page:"
 msgstr "Éléments par page :"
 
+#: views/tools-tab.php:130
 msgid "Apply"
 msgstr "Appliquer"
 
+#: views/tools-tab.php:171
 msgid "Audit and clean up your Media Library."
 msgstr "Auditez et nettoyez votre médiathèque."
 
+#: views/tools-tab.php:196
 msgid "Find library entries whose file is gone from disk."
 msgstr "Trouvez les entrées de la médiathèque dont le fichier a disparu du disque."
 
+#: views/tools-tab.php:201
 msgid "Spot byte-for-byte identical files wasting space."
 msgstr "Repérez les fichiers identiques octet par octet qui gaspillent de l’espace."
 
+#: views/tools-tab.php:206
 msgid "Catch oversized images that slow your pages."
 msgstr "Repérez les images trop volumineuses qui ralentissent vos pages."
 
+#: views/tools-tab.php:211
 msgid "Fix missing alt text for SEO and accessibility."
 msgstr "Corrigez le texte alternatif manquant pour le SEO et l’accessibilité."
 
+#: views/tools-tab.php:215
 msgid "At a Glance"
 msgstr "En un coup d’œil"
 
+#: views/tools-tab.php:224
 msgid "Total Items"
 msgstr "Total des éléments"
 
+#: views/tools-tab.php:229
 msgid "Disk Usage (uploads)"
 msgstr "Espace disque (téléversements)"
 
+#: views/tools-tab.php:234
 msgid "Counts are read straight from the database, so this stays instant on large libraries."
 msgstr "Les décomptes sont lus directement dans la base de données, ce qui reste instantané même sur les grandes médiathèques."
 
+#: views/tools-tab.php:236
 msgid "Maintenance Tools"
 msgstr "Outils de maintenance"
 
+#: views/tools-tab.php:260
 msgid "Media items that exist in the database but whose file is no longer on disk."
 msgstr "Éléments de médias présents dans la base de données mais dont le fichier n’est plus sur le disque."
 
-msgid "No missing files on this page."
-msgstr "Aucun fichier manquant sur cette page."
-
+#: views/tools-tab.php:269
 msgid "Expected File Path"
 msgstr "Chemin de fichier attendu"
 
+#: views/tools-tab.php:287
 msgid "Duplicate Files"
 msgstr "Fichiers en double"
 
-msgid "Attachments whose files are byte-for-byte identical (same size and content hash). Files are compared within the current page; choose \"All\" for a complete cross-library scan."
-msgstr "Fichiers joints dont les fichiers sont identiques octet par octet (même taille et même empreinte de contenu). Les fichiers sont comparés au sein de la page actuelle ; choisissez « Tous » pour une analyse complète de toute la médiathèque."
-
-msgid "No duplicate files on this page."
-msgstr "Aucun fichier en double sur cette page."
-
+#. translators: 1: group number, 2: human-readable file size.
+#: views/tools-tab.php:299
+#, php-format
 msgid "Duplicate group %1$d — %2$s each"
 msgstr "Groupe de doublons %1$d — %2$s chacun"
 
+#. translators: 1: file size threshold, 2: pixel dimension threshold.
+#: views/tools-tab.php:324
+#, php-format
 msgid "Images larger than %1$s, or wider/taller than %2$d px — likely candidates for optimization."
 msgstr "Images de plus de %1$s, ou de plus de %2$d px de largeur/hauteur : candidates probables à l’optimisation."
 
-msgid "No oversized images on this page."
-msgstr "Aucune image trop volumineuse sur cette page."
-
+#: views/tools-tab.php:356
 msgid "Bulk Alt-Text Editing"
 msgstr "Édition groupée du texte alternatif"
 
+#: views/tools-tab.php:357
 msgid "Edit alt text for the images on this page, then save. Rows highlighted in yellow have no alt text."
 msgstr "Modifiez le texte alternatif des images de cette page, puis enregistrez. Les lignes surlignées en jaune n’ont pas de texte alternatif."
 
+#: views/tools-tab.php:360
 msgid "No images on this page."
 msgstr "Aucune image sur cette page."
 
+#: views/tools-tab.php:365
 msgid "Image"
 msgstr "Image"
 
+#: views/tools-tab.php:386
 msgid "Save Alt Text"
 msgstr "Enregistrer le texte alternatif"
 
+#. translators: %d: number of images whose alt text was updated.
+#: views/tools-tab.php:178
+#, php-format
 msgid "Updated alt text for %d image."
 msgid_plural "Updated alt text for %d images."
 msgstr[0] "Texte alternatif mis à jour pour %d image."
 msgstr[1] "Texte alternatif mis à jour pour %d images."
 
+#. Plugin Name of the plugin
+#: export-media-urls.php
+#: classes/class-functions.php:124
+#: export-media-urls.php:119
+#: export-media-urls.php:126
+#: export-media-urls.php:130
+msgid "Export Media URLs"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: export-media-urls.php
+msgid "https://wordpress.org/plugins/export-media-urls/"
+msgstr ""
+
+#. Description of the plugin
+#: export-media-urls.php
+msgid "Extract every Media Library URL along with title, file name, size, dimensions, alt text, caption, MIME type, parent post and more. Filter by media type, attachment status, author and date range. Display in the dashboard or download as CSV or JSON. Useful for migrations, SEO/accessibility audits and library cleanup."
+msgstr ""
+
+#. Author of the plugin
+#: export-media-urls.php
+msgid "Atlas Gondal"
+msgstr ""
+
+#. Author URI of the plugin
+#: export-media-urls.php
+msgid "https://AtlasGondal.com/"
+msgstr ""
+
+#: classes/class-fields.php:47
+msgid "Where Used"
+msgstr "Utilisé dans"
+
+#: classes/class-fields.php:83
+msgid "Uploaded To (Parent)"
+msgstr "Téléversé vers (parent)"
+
+#: classes/class-fields.php:84
+msgid "Uploaded To URL"
+msgstr "URL de téléversé vers"
+
+#: classes/class-fields.php:85
+msgid "Used In (count)"
+msgstr "Utilisé dans (nombre)"
+
+#: classes/class-fields.php:86
+msgid "Used In (posts)"
+msgstr "Utilisé dans (articles)"
+
+#: classes/class-fields.php:87
+msgid "Used In (URLs)"
+msgstr "Utilisé dans (URL)"
+
+#: classes/class-fields.php:88
+msgid "Unused"
+msgstr "Inutilisé"
+
+#: views/settings-page.php:174
+msgid "Heads up:"
+msgstr "Attention :"
+
+#: views/settings-page.php:175
+msgid "The \"Used In\" and \"Unused\" columns scan the content of every post and page to find where each media item is actually used. On large sites, or on small/shared hosting, this can be slow and memory-heavy and may hit a timeout or memory limit."
+msgstr "Les colonnes « Utilisé dans » et « Inutilisé » analysent le contenu de chaque article et page pour déterminer où chaque élément multimédia est réellement utilisé. Sur les grands sites, ou sur un hébergement modeste ou mutualisé, cela peut être lent et gourmand en mémoire, et risque de provoquer un dépassement du délai ou d’atteindre la limite de mémoire."
+
+#: views/settings-page.php:178
+msgid "If the export fails or times out, use \"Show Advanced Options\" below to export a smaller item range at a time. These columns are optional — leave them unticked and the export runs exactly as before."
+msgstr "Si l’export échoue ou expire, utilisez « Afficher les options avancées » ci-dessous pour exporter une plage d’éléments plus petite à la fois. Ces colonnes sont facultatives : laissez-les décochées et l’export fonctionnera exactement comme avant."
+
+#: views/settings-page.php:181
+msgid "Note: \"Unused\" means the item was not found in any post or page content. References added by page builders, sliders, custom fields, widgets or theme options are not scanned, so please confirm before deleting anything."
+msgstr "Remarque : « Inutilisé » signifie que l’élément n’a été trouvé dans le contenu d’aucun article ni d’aucune page. Les références ajoutées par les constructeurs de pages, carrousels, champs personnalisés, widgets ou options du thème ne sont pas analysées ; veuillez donc vérifier avant de supprimer quoi que ce soit."
+
+#. translators: 1: current page, 2: total pages, 3: total items.
+#: views/tools-tab.php:154
+#, php-format
+msgid "Page %1$s of %2$s (%3$s items)"
+msgstr "Page %1$s sur %2$s (%3$s éléments)"
+
+#: views/tools-tab.php:263
+msgid "No missing files found. Every attachment has its file on disk."
+msgstr "Aucun fichier manquant trouvé. Chaque fichier joint a son fichier sur le disque."
+
+#: views/tools-tab.php:288
+msgid "Sets of attachments whose files are byte-for-byte identical (same size and content hash) — keep one and delete the rest to reclaim space."
+msgstr "Ensembles de fichiers joints dont les fichiers sont identiques octet par octet (même taille et même empreinte de contenu) — conservez-en un et supprimez les autres pour récupérer de l’espace."
+
+#: views/tools-tab.php:291
+msgid "No duplicate files found."
+msgstr "Aucun fichier en double trouvé."
+
+#: views/tools-tab.php:329
+msgid "No oversized images found."
+msgstr "Aucune image surdimensionnée trouvée."

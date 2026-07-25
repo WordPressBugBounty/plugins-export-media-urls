@@ -69,6 +69,7 @@ function emuApplyPreset(keysCsv) {
         boxes[i].checked = (wanted.indexOf(boxes[i].value) !== -1);
     }
     emuSyncGroupOpenState();
+    emuSyncUsageWarning();
 }
 
 function emuSetGroup(groupKey, state) {
@@ -76,6 +77,17 @@ function emuSetGroup(groupKey, state) {
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].checked = state;
     }
+}
+
+/* Show the "resource intensive" warning only while a where-used column
+ * (data-emu-usage) is ticked. */
+function emuSyncUsageWarning() {
+    var row = document.getElementById('emuUsageWarningRow');
+    if (!row) {
+        return;
+    }
+    var active = document.querySelector('input[name="export_fields[]"][data-emu-usage="1"]:checked');
+    row.style.display = active ? 'table-row' : 'none';
 }
 
 /* Paginate the on-screen results table in the browser. Page size comes from
@@ -165,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         selectAll[j].addEventListener('click', function (e) {
             e.preventDefault();
             emuSetGroup(this.getAttribute('data-emu-group'), true);
+            emuSyncUsageWarning();
         });
     }
 
@@ -173,6 +186,14 @@ document.addEventListener('DOMContentLoaded', function () {
         selectNone[k].addEventListener('click', function (e) {
             e.preventDefault();
             emuSetGroup(this.getAttribute('data-emu-group'), false);
+            emuSyncUsageWarning();
         });
     }
+
+    /* Toggling any field checkbox re-evaluates the where-used warning. */
+    var fieldBoxes = emuFieldCheckboxes();
+    for (var m = 0; m < fieldBoxes.length; m++) {
+        fieldBoxes[m].addEventListener('change', emuSyncUsageWarning);
+    }
+    emuSyncUsageWarning();
 });

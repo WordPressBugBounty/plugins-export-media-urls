@@ -1,417 +1,663 @@
-# Chinese translation for Export Media URLs.
-# Copyright (C) 2026 Atlas Gondal
-# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Export Media URLs 3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/export-media-urls\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-10T05:48:55+00:00\n"
+"PO-Revision-Date: 2026-07-10T05:48:55+00:00\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: export-media-urls\n"
 
+#: classes/class-exporter.php:115
 msgid "Below is a list of Exported Media Data:"
 msgstr "以下是导出的媒体数据列表："
 
+#: classes/class-exporter.php:116
 msgid "Total number of items"
 msgstr "项目总数"
 
+#: classes/class-exporter.php:120
 msgid "Results per page:"
 msgstr "每页结果数："
 
+#: classes/class-exporter.php:125
+#: views/settings-page.php:71
+#: views/settings-page.php:81
+#: views/settings-page.php:222
+#: views/settings-page.php:239
+#: views/tools-tab.php:125
 msgid "All"
 msgstr "全部"
 
+#: classes/class-exporter.php:150
 msgid "Previous"
 msgstr "上一页"
 
+#: classes/class-exporter.php:152
+#: views/tools-tab.php:158
+#: views/tools-tab.php:160
 msgid "Next"
 msgstr "下一页"
 
+#: classes/class-fields.php:29
 msgid "Core"
 msgstr "核心"
 
+#: classes/class-fields.php:30
 msgid "File"
 msgstr "文件"
 
+#: classes/class-fields.php:31
 msgid "Meta"
 msgstr "元数据"
 
+#: classes/class-fields.php:32
 msgid "Relations"
 msgstr "关联"
 
+#: classes/class-fields.php:33
 msgid "Dates"
 msgstr "日期"
 
+#: classes/class-fields.php:45
 msgid "Migration"
 msgstr "迁移"
 
+#: classes/class-fields.php:46
 msgid "SEO / Accessibility"
 msgstr "SEO / 无障碍"
 
+#: classes/class-fields.php:48
 msgid "Cleanup"
 msgstr "清理"
 
+#: classes/class-fields.php:49
 msgid "Full"
 msgstr "完整"
 
+#: classes/class-fields.php:50
+#: views/settings-page.php:157
 msgid "None"
 msgstr "无"
 
+#: classes/class-fields.php:63
+#: views/tools-tab.php:267
+#: views/tools-tab.php:333
 msgid "ID"
 msgstr "ID"
 
+#: classes/class-fields.php:64
+#: views/tools-tab.php:268
+#: views/tools-tab.php:334
+#: views/tools-tab.php:366
 msgid "Title"
 msgstr "标题"
 
+#: classes/class-fields.php:65
 msgid "File Name"
 msgstr "文件名"
 
+#: classes/class-fields.php:66
 msgid "URL"
 msgstr "URL"
 
+#: classes/class-fields.php:69
+#: views/tools-tab.php:335
 msgid "File Size"
 msgstr "文件大小"
 
+#: classes/class-fields.php:70
 msgid "MIME Type"
 msgstr "MIME 类型"
 
+#: classes/class-fields.php:71
+#: views/tools-tab.php:336
 msgid "Dimensions"
 msgstr "尺寸"
 
+#: classes/class-fields.php:72
 msgid "Thumbnail URL"
 msgstr "缩略图 URL"
 
+#: classes/class-fields.php:73
 msgid "Medium URL"
 msgstr "中等图 URL"
 
+#: classes/class-fields.php:74
 msgid "Large URL"
 msgstr "大图 URL"
 
+#: classes/class-fields.php:77
 msgid "Caption"
 msgstr "说明文字"
 
+#: classes/class-fields.php:78
+#: views/tab-nav.php:26
+#: views/tools-tab.php:210
+#: views/tools-tab.php:367
 msgid "Alt Text"
 msgstr "替代文本"
 
+#: classes/class-fields.php:79
 msgid "Alt Missing"
 msgstr "缺少替代文本"
 
+#: classes/class-fields.php:80
 msgid "Description"
 msgstr "描述"
 
-msgid "Parent Post"
-msgstr "父级文章"
-
-msgid "Parent URL"
-msgstr "父级 URL"
-
+#: classes/class-fields.php:91
 msgid "Date Uploaded"
 msgstr "上传日期"
 
+#: classes/class-fields.php:268
+#: classes/class-fields.php:335
 msgid "Yes"
 msgstr "是"
 
+#: classes/class-functions.php:123
+#: classes/class-functions.php:170
 msgid "No result found in that range, please reselect and try again!"
 msgstr "在该范围内未找到结果，请重新选择后再试！"
 
+#: classes/class-media-tools.php:348
+#: views/settings-page.php:63
 msgid "Images"
 msgstr "图片"
 
+#: classes/class-media-tools.php:351
+#: views/settings-page.php:64
 msgid "Video"
 msgstr "视频"
 
+#: classes/class-media-tools.php:354
+#: views/settings-page.php:65
 msgid "Audio"
 msgstr "音频"
 
+#: classes/class-media-tools.php:361
+#: views/settings-page.php:67
 msgid "Archives"
 msgstr "压缩文件"
 
+#: classes/class-media-tools.php:364
+#: views/settings-page.php:66
 msgid "Documents"
 msgstr "文档"
 
+#: classes/class-media-tools.php:366
 msgid "Other"
 msgstr "其他"
 
+#: classes/class-request.php:81
 msgid "Sorry, you missed something. Please select at least one <strong>field</strong> to export, and try again. :)"
 msgstr "抱歉，您遗漏了一些内容。请至少选择一个要导出的<strong>字段</strong>，然后重试。:)"
 
+#: classes/class-request.php:85
 msgid "Invalid/Missing download File Name!"
 msgstr "下载文件名无效或缺失！"
 
+#: classes/class-request.php:90
 msgid "Please select both dates!"
 msgstr "请选择两个日期！"
 
+#: classes/class-request.php:93
 msgid "Start date cannot be greater than end date!"
 msgstr "开始日期不能晚于结束日期！"
 
+#: export-media-urls.php:110
+#: views/settings-page.php:16
+#: views/tools-tab.php:15
 msgid "You do not have sufficient permissions to access this page."
 msgstr "您没有足够的权限访问此页面。"
 
+#: export-media-urls.php:118
+#: views/settings-page.php:321
+#: views/settings-page.php:327
+#: views/tools-tab.php:182
 msgid "Security token validation failed!"
 msgstr "安全令牌验证失败！"
 
+#: export-media-urls.php:130
 msgid "Invalid export type."
 msgstr "导出类型无效。"
 
+#: export-media-urls.php:148
+#: export-media-urls.php:156
 msgid "Could not activate plugin: PHP version error"
 msgstr "无法激活插件：PHP 版本错误"
 
+#: export-media-urls.php:149
 msgid "PLUGIN:"
 msgstr "插件："
 
+#: export-media-urls.php:150
 msgid "You are using PHP version"
 msgstr "您正在使用的 PHP 版本"
 
+#. translators: %s: minimum required PHP version.
+#: export-media-urls.php:152
+#, php-format
 msgid "This plugin requires PHP version %s or greater."
 msgstr "此插件需要 PHP %s 或更高版本。"
 
+#: export-media-urls.php:153
 msgid "WordPress itself recommends using PHP version 7.4 or greater"
 msgstr "WordPress 官方建议使用 PHP 7.4 或更高版本"
 
+#: export-media-urls.php:154
 msgid "Official WordPress requirements"
 msgstr "WordPress 官方要求"
 
+#: export-media-urls.php:155
 msgid "Please upgrade your PHP version or contact your Server administrator."
 msgstr "请升级您的 PHP 版本或联系您的服务器管理员。"
 
+#. translators: 1: plugin name, 2: five-star rating link.
+#: export-media-urls.php:190
+#, php-format
 msgid "Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!"
 msgstr "喜欢 %1$s 吗？请给我们 %2$s 评分。非常感谢您的支持！"
 
+#: views/settings-page.php:62
 msgid "All Media"
 msgstr "所有媒体"
 
+#: views/settings-page.php:72
 msgid "Attached (used by a post)"
 msgstr "已附加（被文章使用）"
 
+#: views/settings-page.php:73
 msgid "Unattached (orphaned)"
 msgstr "未附加（孤立）"
 
+#: views/settings-page.php:77
 msgid "CSV File"
 msgstr "CSV 文件"
 
+#: views/settings-page.php:78
 msgid "JSON File"
 msgstr "JSON 文件"
 
+#: views/settings-page.php:112
 msgid "Hide Filter Options"
 msgstr "隐藏筛选选项"
 
+#: views/settings-page.php:112
 msgid "Show Filter Options"
 msgstr "显示筛选选项"
 
+#: views/settings-page.php:114
 msgid "Hide Advanced Options"
 msgstr "隐藏高级选项"
 
+#: views/settings-page.php:114
 msgid "Show Advanced Options"
 msgstr "显示高级选项"
 
+#: views/settings-page.php:124
 msgid "Export every Media Library URL as CSV or JSON, or view them right here."
 msgstr "将媒体库中的所有 URL 导出为 CSV 或 JSON，或直接在此处查看。"
 
+#: views/settings-page.php:136
 msgid "Export Fields:"
 msgstr "导出字段："
 
+#: views/settings-page.php:139
 msgid "Presets:"
 msgstr "预设："
 
+#: views/settings-page.php:155
 msgid "Select all"
 msgstr "全选"
 
+#: views/settings-page.php:188
 msgid "Media Type:"
 msgstr "媒体类型："
 
+#: views/settings-page.php:202
 msgid "Attachment Status:"
 msgstr "附件状态："
 
+#: views/settings-page.php:211
 msgid "By Author:"
 msgstr "按作者："
 
+#: views/settings-page.php:220
 msgid "Date Range:"
 msgstr "日期范围："
 
+#: views/settings-page.php:223
 msgid "Between Dates"
 msgstr "日期之间"
 
+#: views/settings-page.php:225
+#: views/settings-page.php:242
 msgid "From:"
 msgstr "从："
 
+#: views/settings-page.php:226
+#: views/settings-page.php:243
 msgid "To:"
 msgstr "到："
 
+#: views/settings-page.php:237
 msgid "Number of Items:"
 msgstr "项目数量："
 
+#: views/settings-page.php:237
 msgid "Specify a range to extract. Useful in case of a Memory Out error on large libraries!"
 msgstr "指定要提取的范围。在大型媒体库出现内存不足错误时非常有用！"
 
+#: views/settings-page.php:240
 msgid "Specify Range"
 msgstr "指定范围"
 
+#: views/settings-page.php:249
 msgid "Download File Name:"
 msgstr "下载文件名："
 
+#: views/settings-page.php:256
 msgid "Download Format:"
 msgstr "下载格式："
 
+#: views/settings-page.php:267
 msgid "Download"
 msgstr "下载"
 
+#: views/settings-page.php:268
 msgid "Display Here"
 msgstr "在此显示"
 
+#: views/settings-page.php:285
 msgid "Want to Support?"
 msgstr "想要支持？"
 
+#: views/settings-page.php:287
 msgid "If you enjoyed the plugin, and want to support:"
 msgstr "如果您喜欢这个插件并想支持："
 
+#: views/settings-page.php:289
 msgid "Hire me"
 msgstr "雇用我"
 
+#: views/settings-page.php:289
 msgid "on a project"
 msgstr "参与项目"
 
+#: views/settings-page.php:290
 msgid "Buy me a Coffee"
 msgstr "请我喝杯咖啡"
 
+#: views/settings-page.php:293
 msgid "Wanna say Thanks?"
 msgstr "想说声谢谢？"
 
+#: views/settings-page.php:295
 msgid "Leave"
 msgstr "留下"
 
+#: views/settings-page.php:295
 msgid "rating"
 msgstr "评分"
 
+#: views/settings-page.php:296
 msgid "Follow me on X:"
 msgstr "在 X 上关注我："
 
+#: views/settings-page.php:299
 msgid "Got a Problem?"
 msgstr "遇到问题？"
 
+#: views/settings-page.php:300
 msgid "Want to report a bug or suggest a feature? You can:"
 msgstr "想报告错误或建议功能？您可以："
 
+#: views/settings-page.php:302
 msgid "Create"
 msgstr "创建"
 
+#: views/settings-page.php:302
 msgid "Support Ticket"
 msgstr "支持工单"
 
+#: views/settings-page.php:303
 msgid "Write me an"
 msgstr "给我写一封"
 
+#: views/settings-page.php:303
 msgid "Email"
 msgstr "电子邮件"
 
+#: views/settings-page.php:306
 msgid "Developed by:"
 msgstr "开发者："
 
+#: views/tab-nav.php:21
 msgid "Export"
 msgstr "导出"
 
+#: views/tab-nav.php:22
 msgid "Summary"
 msgstr "概要"
 
+#: views/tab-nav.php:23
+#: views/tools-tab.php:195
+#: views/tools-tab.php:259
 msgid "Missing Files"
 msgstr "缺失文件"
 
+#: views/tab-nav.php:24
+#: views/tools-tab.php:200
 msgid "Duplicates"
 msgstr "重复文件"
 
+#: views/tab-nav.php:25
+#: views/tools-tab.php:205
+#: views/tools-tab.php:320
 msgid "Heavy Images"
 msgstr "过大图片"
 
-msgid "%1$s–%2$s of %3$s"
-msgstr "第 %1$s–%2$s 项，共 %3$s 项"
-
+#: views/tools-tab.php:147
+#: views/tools-tab.php:149
 msgid "Prev"
 msgstr "上一页"
 
-msgid "Page %1$s of %2$s"
-msgstr "第 %1$s 页，共 %2$s 页"
-
+#: views/tools-tab.php:121
 msgid "Items per page:"
 msgstr "每页项目数："
 
+#: views/tools-tab.php:130
 msgid "Apply"
 msgstr "应用"
 
+#: views/tools-tab.php:171
 msgid "Audit and clean up your Media Library."
 msgstr "审查并清理您的媒体库。"
 
+#: views/tools-tab.php:196
 msgid "Find library entries whose file is gone from disk."
 msgstr "查找文件已从磁盘上消失的媒体库条目。"
 
+#: views/tools-tab.php:201
 msgid "Spot byte-for-byte identical files wasting space."
 msgstr "找出逐字节相同、浪费空间的文件。"
 
+#: views/tools-tab.php:206
 msgid "Catch oversized images that slow your pages."
 msgstr "找出拖慢页面速度的过大图片。"
 
+#: views/tools-tab.php:211
 msgid "Fix missing alt text for SEO and accessibility."
 msgstr "修复缺失的替代文本，以改善 SEO 和无障碍性。"
 
+#: views/tools-tab.php:215
 msgid "At a Glance"
 msgstr "概览"
 
+#: views/tools-tab.php:224
 msgid "Total Items"
 msgstr "项目总数"
 
+#: views/tools-tab.php:229
 msgid "Disk Usage (uploads)"
 msgstr "磁盘使用量（上传目录）"
 
+#: views/tools-tab.php:234
 msgid "Counts are read straight from the database, so this stays instant on large libraries."
 msgstr "计数直接从数据库读取，因此即使在大型媒体库中也能即时显示。"
 
+#: views/tools-tab.php:236
 msgid "Maintenance Tools"
 msgstr "维护工具"
 
+#: views/tools-tab.php:260
 msgid "Media items that exist in the database but whose file is no longer on disk."
 msgstr "存在于数据库中但文件已不在磁盘上的媒体项目。"
 
-msgid "No missing files on this page."
-msgstr "此页面上没有缺失文件。"
-
+#: views/tools-tab.php:269
 msgid "Expected File Path"
 msgstr "预期文件路径"
 
+#: views/tools-tab.php:287
 msgid "Duplicate Files"
 msgstr "重复文件"
 
-msgid "Attachments whose files are byte-for-byte identical (same size and content hash). Files are compared within the current page; choose \"All\" for a complete cross-library scan."
-msgstr "文件逐字节完全相同（大小和内容哈希一致）的附件。文件仅在当前页面内进行比较；选择“全部”可进行完整的全库扫描。"
-
-msgid "No duplicate files on this page."
-msgstr "此页面上没有重复文件。"
-
+#. translators: 1: group number, 2: human-readable file size.
+#: views/tools-tab.php:299
+#, php-format
 msgid "Duplicate group %1$d — %2$s each"
 msgstr "重复组 %1$d — 每个 %2$s"
 
+#. translators: 1: file size threshold, 2: pixel dimension threshold.
+#: views/tools-tab.php:324
+#, php-format
 msgid "Images larger than %1$s, or wider/taller than %2$d px — likely candidates for optimization."
 msgstr "大于 %1$s，或宽/高超过 %2$d 像素的图片——很可能需要优化。"
 
-msgid "No oversized images on this page."
-msgstr "此页面上没有过大的图片。"
-
+#: views/tools-tab.php:356
 msgid "Bulk Alt-Text Editing"
 msgstr "批量编辑替代文本"
 
+#: views/tools-tab.php:357
 msgid "Edit alt text for the images on this page, then save. Rows highlighted in yellow have no alt text."
 msgstr "编辑此页面上图片的替代文本，然后保存。以黄色突出显示的行没有替代文本。"
 
+#: views/tools-tab.php:360
 msgid "No images on this page."
 msgstr "此页面上没有图片。"
 
+#: views/tools-tab.php:365
 msgid "Image"
 msgstr "图片"
 
+#: views/tools-tab.php:386
 msgid "Save Alt Text"
 msgstr "保存替代文本"
 
+#. translators: %d: number of images whose alt text was updated.
+#: views/tools-tab.php:178
+#, php-format
 msgid "Updated alt text for %d image."
 msgid_plural "Updated alt text for %d images."
 msgstr[0] "已更新 %d 张图片的替代文本。"
 
+#. Plugin Name of the plugin
+#: export-media-urls.php
+#: classes/class-functions.php:124
+#: export-media-urls.php:119
+#: export-media-urls.php:126
+#: export-media-urls.php:130
+msgid "Export Media URLs"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: export-media-urls.php
+msgid "https://wordpress.org/plugins/export-media-urls/"
+msgstr ""
+
+#. Description of the plugin
+#: export-media-urls.php
+msgid "Extract every Media Library URL along with title, file name, size, dimensions, alt text, caption, MIME type, parent post and more. Filter by media type, attachment status, author and date range. Display in the dashboard or download as CSV or JSON. Useful for migrations, SEO/accessibility audits and library cleanup."
+msgstr ""
+
+#. Author of the plugin
+#: export-media-urls.php
+msgid "Atlas Gondal"
+msgstr ""
+
+#. Author URI of the plugin
+#: export-media-urls.php
+msgid "https://AtlasGondal.com/"
+msgstr ""
+
+#: classes/class-fields.php:47
+msgid "Where Used"
+msgstr "使用于"
+
+#: classes/class-fields.php:83
+msgid "Uploaded To (Parent)"
+msgstr "上传至（父级）"
+
+#: classes/class-fields.php:84
+msgid "Uploaded To URL"
+msgstr "上传至 URL"
+
+#: classes/class-fields.php:85
+msgid "Used In (count)"
+msgstr "使用于（数量）"
+
+#: classes/class-fields.php:86
+msgid "Used In (posts)"
+msgstr "使用于（文章）"
+
+#: classes/class-fields.php:87
+msgid "Used In (URLs)"
+msgstr "使用于（URL）"
+
+#: classes/class-fields.php:88
+msgid "Unused"
+msgstr "未使用"
+
+#: views/settings-page.php:174
+msgid "Heads up:"
+msgstr "提示："
+
+#: views/settings-page.php:175
+msgid "The \"Used In\" and \"Unused\" columns scan the content of every post and page to find where each media item is actually used. On large sites, or on small/shared hosting, this can be slow and memory-heavy and may hit a timeout or memory limit."
+msgstr "“使用于”和“未使用”列会扫描每一篇文章和页面的内容，以查找每个媒体项目的实际使用位置。在大型网站或小型/共享主机上，此操作可能较慢且占用大量内存，并可能导致超时或达到内存限制。"
+
+#: views/settings-page.php:178
+msgid "If the export fails or times out, use \"Show Advanced Options\" below to export a smaller item range at a time. These columns are optional — leave them unticked and the export runs exactly as before."
+msgstr "如果导出失败或超时，请使用下方的“显示高级选项”，每次导出较小的项目范围。这些列是可选的——不勾选它们，导出将与以前完全相同。"
+
+#: views/settings-page.php:181
+msgid "Note: \"Unused\" means the item was not found in any post or page content. References added by page builders, sliders, custom fields, widgets or theme options are not scanned, so please confirm before deleting anything."
+msgstr "注意：“未使用”表示在任何文章或页面内容中都未找到该项目。由页面构建器、幻灯片、自定义字段、小工具或主题选项添加的引用不会被扫描，因此删除任何内容前请先确认。"
+
+#. translators: 1: current page, 2: total pages, 3: total items.
+#: views/tools-tab.php:154
+#, php-format
+msgid "Page %1$s of %2$s (%3$s items)"
+msgstr "第 %1$s 页，共 %2$s 页（%3$s 个项目）"
+
+#: views/tools-tab.php:263
+msgid "No missing files found. Every attachment has its file on disk."
+msgstr "未发现缺失文件。每个附件的文件都在磁盘上。"
+
+#: views/tools-tab.php:288
+msgid "Sets of attachments whose files are byte-for-byte identical (same size and content hash) — keep one and delete the rest to reclaim space."
+msgstr "文件逐字节完全相同的附件组（大小和内容哈希相同）——保留一个并删除其余的以回收空间。"
+
+#: views/tools-tab.php:291
+msgid "No duplicate files found."
+msgstr "未发现重复文件。"
+
+#: views/tools-tab.php:329
+msgid "No oversized images found."
+msgstr "未发现超大图片。"

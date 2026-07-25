@@ -88,6 +88,12 @@ $groups = $emu_fields->groups();
 $fields = $emu_fields->fields();
 $presets = $emu_fields->presets();
 
+/* Fields whose selection triggers the where-used content scan (see the warning
+   below). Its initial visibility is decided here so it is correct without
+   JavaScript and never flashes; script.js then keeps it in sync. */
+$usage_keys = $emu_fields->usage_field_keys();
+$usage_selected = (bool) array_intersect($selected_fields, $usage_keys);
+
 $fields_by_group = array();
 $group_has_selected = array();
 foreach ($fields as $key => $def) {
@@ -152,11 +158,29 @@ $admin_post_url = admin_url('admin-post.php');
                                         </div>
                                         <div class="emu-field-grid">
                                             <?php foreach ($fields_by_group[$group_key] as $key => $def) : ?>
-                                                <label><input type="checkbox" name="export_fields[]" value="<?php echo esc_attr($key); ?>" data-emu-group="<?php echo esc_attr($group_key); ?>" <?php checked(in_array($key, $selected_fields, true)); ?>> <?php echo esc_html($def['label']); ?></label>
+                                                <label><input type="checkbox" name="export_fields[]" value="<?php echo esc_attr($key); ?>" data-emu-group="<?php echo esc_attr($group_key); ?>"<?php echo in_array($key, $usage_keys, true) ? ' data-emu-usage="1"' : ''; ?> <?php checked(in_array($key, $selected_fields, true)); ?>> <?php echo esc_html($def['label']); ?></label>
                                             <?php endforeach; ?>
                                         </div>
                                     </details>
                                 <?php endforeach; ?>
+                            </td>
+                        </tr>
+
+                        <tr id="emuUsageWarningRow" class="emu-usage-warning-row" style="display: <?php echo $usage_selected ? 'table-row' : 'none'; ?>">
+                            <th></th>
+                            <td>
+                                <div class="emu-usage-warning notice notice-warning inline">
+                                    <p>
+                                        <strong><?php esc_html_e('Heads up:', 'export-media-urls'); ?></strong>
+                                        <?php esc_html_e('The "Used In" and "Unused" columns scan the content of every post and page to find where each media item is actually used. On large sites, or on small/shared hosting, this can be slow and memory-heavy and may hit a timeout or memory limit.', 'export-media-urls'); ?>
+                                    </p>
+                                    <p>
+                                        <?php esc_html_e('If the export fails or times out, use "Show Advanced Options" below to export a smaller item range at a time. These columns are optional — leave them unticked and the export runs exactly as before.', 'export-media-urls'); ?>
+                                    </p>
+                                    <p class="emu-usage-warning-note">
+                                        <?php esc_html_e('Note: "Unused" means the item was not found in any post or page content. References added by page builders, sliders, custom fields, widgets or theme options are not scanned, so please confirm before deleting anything.', 'export-media-urls'); ?>
+                                    </p>
+                                </div>
                             </td>
                         </tr>
 
@@ -268,7 +292,7 @@ $admin_post_url = admin_url('admin-post.php');
                     <hr>
                     <h3><?php esc_html_e('Wanna say Thanks?', 'export-media-urls'); ?></h3>
                     <ul>
-                        <li><?php esc_html_e('Leave', 'export-media-urls'); ?> <a href="https://wordpress.org/support/plugin/export-media-urls/reviews/" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a> <?php esc_html_e('rating', 'export-media-urls'); ?></li>
+                        <li><?php esc_html_e('Leave', 'export-media-urls'); ?> <a href="https://wordpress.org/support/plugin/export-media-urls/reviews/?filter=5#new-post" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a> <?php esc_html_e('rating', 'export-media-urls'); ?></li>
                         <li><?php esc_html_e('Follow me on X:', 'export-media-urls'); ?> <a href="https://x.com/atlas_gondal" target="_blank">@Atlas_Gondal</a></li>
                     </ul>
                     <hr>

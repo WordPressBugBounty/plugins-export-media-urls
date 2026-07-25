@@ -44,7 +44,8 @@ class EMU_Fields
         return array(
             'migration' => array('label' => __('Migration', 'export-media-urls'),          'fields' => array('file_name', 'file_size', 'type', 'url')),
             'audit'     => array('label' => __('SEO / Accessibility', 'export-media-urls'), 'fields' => array('url', 'title', 'alt', 'alt_missing')),
-            'cleanup'   => array('label' => __('Cleanup', 'export-media-urls'),             'fields' => array('url', 'file_size', 'parent')),
+            'where_used' => array('label' => __('Where Used', 'export-media-urls'),         'fields' => array('url', 'title', 'used_in_count', 'used_in_titles', 'is_unused')),
+            'cleanup'   => array('label' => __('Cleanup', 'export-media-urls'),             'fields' => array('url', 'file_size', 'used_in_count', 'is_unused')),
             'full'      => array('label' => __('Full', 'export-media-urls'),                'fields' => array_keys($this->fields())),
             'none'      => array('label' => __('None', 'export-media-urls'),                'fields' => array()),
         );
@@ -79,8 +80,12 @@ class EMU_Fields
             'description' => array('label' => __('Description', 'export-media-urls'),   'group' => 'meta',      'cb' => 'f_description'),
 
             // --- Relations ---
-            'parent'      => array('label' => __('Parent Post', 'export-media-urls'),   'group' => 'relations', 'cb' => 'f_parent'),
-            'parent_url'  => array('label' => __('Parent URL', 'export-media-urls'),    'group' => 'relations', 'cb' => 'f_parent_url'),
+            'parent'        => array('label' => __('Uploaded To (Parent)', 'export-media-urls'), 'group' => 'relations', 'cb' => 'f_parent'),
+            'parent_url'    => array('label' => __('Uploaded To URL', 'export-media-urls'),      'group' => 'relations', 'cb' => 'f_parent_url'),
+            'used_in_count' => array('label' => __('Used In (count)', 'export-media-urls'),      'group' => 'relations', 'cb' => 'f_used_in_count'),
+            'used_in_titles' => array('label' => __('Used In (posts)', 'export-media-urls'),     'group' => 'relations', 'cb' => 'f_used_in_titles'),
+            'used_in_urls'  => array('label' => __('Used In (URLs)', 'export-media-urls'),       'group' => 'relations', 'cb' => 'f_used_in_urls'),
+            'is_unused'     => array('label' => __('Unused', 'export-media-urls'),               'group' => 'relations', 'cb' => 'f_is_unused'),
 
             // --- Dates ---
             'date'        => array('label' => __('Date Uploaded', 'export-media-urls'), 'group' => 'dates',     'cb' => 'f_date'),
@@ -137,6 +142,34 @@ class EMU_Fields
     public function needs_meta($selected_fields)
     {
         foreach (array('dimensions', 'url_thumbnail', 'url_medium', 'url_large') as $field) {
+            if (in_array($field, $selected_fields, true)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * The field keys that trigger the (expensive) where-used content scan.
+     *
+     * @return string[]
+     */
+    public function usage_field_keys()
+    {
+        return array('used_in_count', 'used_in_titles', 'used_in_urls', 'is_unused');
+    }
+
+    /**
+     * Whether any selected field needs the (expensive) where-used index built.
+     * When false the export never scans post content, so nothing changes for
+     * users who don't ask for usage columns.
+     *
+     * @param array $selected_fields
+     * @return bool
+     */
+    public function needs_usage($selected_fields)
+    {
+        foreach ($this->usage_field_keys() as $field) {
             if (in_array($field, $selected_fields, true)) {
                 return true;
             }
@@ -260,12 +293,66 @@ class EMU_Fields
         return $url ? esc_url($url) : '';
     }
 
+    /**
+     * The posts that actually reference this attachment (featured image, editor
+     * content, galleries, or a third-party filter). This is the *dynamic*
+     * where-used relationship, unlike f_parent()'s static upload origin. See
+     * EMU_Usage_Index for what is and is not detected.
+     */
+    public function f_used_in_count($id, $o, $c)
+    {
+        return (string) count($this->used_in($c));
+    }
+
+    public function f_used_in_titles($id, $o, $c)
+    {
+        $titles = array();
+        foreach ($this->used_in($c) as $pid) {
+            $titles[] = htmlspecialchars_decode(get_the_title($pid));
+        }
+        return implode(' | ', $titles);
+    }
+
+    public function f_used_in_urls($id, $o, $c)
+    {
+        $urls = array();
+        foreach ($this->used_in($c) as $pid) {
+            $url = get_permalink($pid);
+            if ($url) {
+                $urls[] = esc_url($url);
+            }
+        }
+        return implode(' | ', $urls);
+    }
+
+    /**
+     * "Yes" when no scanned post references this attachment. A hint for cleanup,
+     * NOT proof the file is safe to delete — references in page builders, custom
+     * fields, widgets or CSS are not scanned. Empty when a usage was found.
+     */
+    public function f_is_unused($id, $o, $c)
+    {
+        return count($this->used_in($c)) === 0 ? __('Yes', 'export-media-urls') : '';
+    }
+
     public function f_date($id, $o, $c)
     {
         return get_the_date('Y-m-d H:i:s', $id);
     }
 
     /* ----------------------------- helpers ------------------------------- */
+
+    /**
+     * Post IDs referencing the current attachment, taken from the precomputed
+     * context. Empty when the where-used index was not built for this run.
+     *
+     * @param array $c Per-item context.
+     * @return int[]
+     */
+    private function used_in($c)
+    {
+        return (isset($c['used_in']) && is_array($c['used_in'])) ? $c['used_in'] : array();
+    }
 
     /**
      * URL of a registered image size, or '' when the attachment has no such size

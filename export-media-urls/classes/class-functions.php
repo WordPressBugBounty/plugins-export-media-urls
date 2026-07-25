@@ -8,6 +8,7 @@ require_once plugin_dir_path(__FILE__) . 'constants.php';
 require_once plugin_dir_path(__FILE__) . 'class-fields.php';
 require_once plugin_dir_path(__FILE__) . 'class-query.php';
 require_once plugin_dir_path(__FILE__) . 'class-exporter.php';
+require_once plugin_dir_path(__FILE__) . 'class-usage-index.php';
 
 /**
  * Orchestrates an export run: query (in batches) -> build rows from the field
@@ -47,6 +48,14 @@ class EMU_Functions
     {
         $need_meta = $this->fields->needs_meta($options['export_fields']);
 
+        // Build the where-used index once per run, and only when a usage column
+        // is actually selected (it scans all post content, so it is not free).
+        $usage = null;
+        if ($this->fields->needs_usage($options['export_fields'])) {
+            $usage = new EMU_Usage_Index();
+            $usage->build();
+        }
+
         $args_base = EMU_Query::build($options);
         $args_base['no_found_rows'] = true;                 // skip SQL_CALC_FOUND_ROWS (slow on big tables)
         $args_base['update_post_term_cache'] = false;       // attachments carry no taxonomy we export
@@ -81,7 +90,7 @@ class EMU_Functions
             while ($query->have_posts()) {
                 $query->the_post();
                 $post_id = get_the_ID();
-                $context = $this->build_context($post_id, $need_meta);
+                $context = $this->build_context($post_id, $need_meta, $usage);
 
                 $row = array();
                 foreach ($options['export_fields'] as $key) {
@@ -189,9 +198,15 @@ class EMU_Functions
 
     /**
      * Precompute the per-item data shared by the field callbacks. The attachment
-     * metadata blob (dimensions, sized images) is only fetched when needed.
+     * metadata blob (dimensions, sized images) is only fetched when needed, and
+     * the where-used list is only present when the usage index was built.
+     *
+     * @param int                  $post_id
+     * @param bool                 $need_meta
+     * @param EMU_Usage_Index|null $usage
+     * @return array
      */
-    private function build_context($post_id, $need_meta)
+    private function build_context($post_id, $need_meta, $usage = null)
     {
         $meta = array();
         if ($need_meta) {
@@ -201,6 +216,8 @@ class EMU_Functions
             }
         }
 
-        return array('meta' => $meta);
+        $used_in = ($usage !== null) ? $usage->used_in($post_id) : array();
+
+        return array('meta' => $meta, 'used_in' => $used_in);
     }
 }

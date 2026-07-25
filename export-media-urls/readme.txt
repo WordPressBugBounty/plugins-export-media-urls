@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: export, media, urls, csv, json
 Requires at least: 3.6
 Tested up to: 7.0
-Stable tag: 3.0
+Stable tag: 3.1
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +19,7 @@ The fastest way to pull a complete inventory of your WordPress Media Library. Ex
 
 Each tool lives on its own sub-tab and processes the library in pages (100, 250, 500, 1000 or All per page), so the scans stay fast and light even on libraries with thousands of items.
 
-* **Storage summary** — attachment counts per media type, read straight from the database (instant)
+* **Storage summary** — attachment counts per media type
 * **Missing file detector** — find attachments whose file is gone from disk (e.g. after a bad migration)
 * **Duplicate detection** — find files that are byte-for-byte identical (matched by size and content hash; choose "All" for a complete cross-library scan)
 * **Heavy image flags** — spot oversized images (large file size or pixel dimensions) that slow your pages
@@ -39,7 +39,9 @@ You can export each media item's:
 * Alt Text
 * Alt Missing (flag — quickly find images with no alt text)
 * Description
-* Parent Post and Parent URL
+* Uploaded To (Parent) and Uploaded To URL — where the file was first uploaded
+* Used In (count), Used In (posts) and Used In (URLs) — every post that actually references the item
+* Unused (flag — items not found in any post's content)
 * Date Uploaded
 
 The data can be filtered by **media type** (images, video, audio, documents, archives), by **attachment status** (attached vs. unattached/orphaned), by author, and between a date range before extraction. You can also export a specific item range to keep each request small on very large libraries.
@@ -112,9 +114,13 @@ For every media item you can export the ID, Title, File Name, URL, File Size, MI
 
 Yes. You can download the data as a CSV file, download it as JSON, or display it in a paginated table right inside the dashboard.
 
+= What is the difference between "Uploaded To (Parent)" and "Used In"? =
+
+**Uploaded To (Parent)** is WordPress's own `post_parent` value, it records the single post that was open in the editor when the file was *uploaded* (or nothing, for files added from Dashboard → Media). It never changes when you later insert the image elsewhere. **Used In** is computed fresh by scanning your posts and pages for every place the item is actually referenced, featured images, editor content, galleries and pasted URLs, so one item can list several posts, exactly matching where it is used today.
+
 = Can I find media that isn't used anywhere? =
 
-Yes. Use the "Attachment Status" filter and choose "Unattached (orphaned)" to list media that is not attached to any post — handy for cleaning up demo images imported by a theme.
+Two ways, and they mean different things. The **"Attachment Status → Unattached"** filter lists media whose `post_parent` is 0 (typically anything uploaded from Dashboard → Media) but such a file may still be used in a post. For real usage, add the **"Used In (count)"** and **"Unused"** fields (or the **Where Used** / **Cleanup** preset): "Unused" is flagged only when the item is not referenced by any scanned post. Please treat it as a strong hint, not proof, references stored by page builders, custom fields, widgets, sliders or CSS are not scanned, so always confirm before deleting anything.
 
 = Can I find images missing alt text? =
 
@@ -126,7 +132,7 @@ The export reads attachments in batches and streams results out as it goes, so m
 
 = Is the exported CSV safe to open in Excel? =
 
-Yes. Cell values that begin with =, +, - or @ are neutralized, so a malicious value cannot run as a spreadsheet formula when the file is opened.
+Yes. Cell values are neutralized, so a malicious value cannot run as a spreadsheet formula when the file is opened.
 
 = Does Export Media URLs make changes to the database? =
 
@@ -145,6 +151,15 @@ This plugin works with PHP version 5.4 and greater. WordPress itself [recommends
 5. Bulk Alt-Text editing — fix missing alt text across the library, with missing rows highlighted
 
 == Changelog ==
+
+= 3.1 =
+* New - "Used In" columns and "Unused" flag showing where each media item is referenced
+* New - "Where Used" preset for quick usage reports
+* New - "Parent Post" / "Parent URL" renamed "Uploaded To (Parent)" / "Uploaded To URL"
+* New - notice warning that the usage scan can be slow on large sites
+* New - developer filters emu_usage_extra_ids and emu_usage_post_types
+* Improvement - the usage scan runs only when a usage column is selected
+* Improvement - updated German, Spanish, French and Simplified Chinese translations
 
 = 3.0 =
 * New - Media Tools tab: storage summary, missing-file detector, duplicate detection, heavy-image flags, and bulk alt-text editing
@@ -191,5 +206,13 @@ This plugin works with PHP version 5.4 and greater. WordPress itself [recommends
 
 == Upgrade Notice ==
 
-= 3.0 =
-A major rewrite: new Media Tools tab (storage summary, missing-file detector, duplicate detection, heavy-image flags, bulk alt-text editing), media-type filtering, new export fields, JSON export, and streamed downloads. Still compatible back to PHP 5.4.
+= 3.1 =
+Adds "Used In" columns and an "Unused" flag that show where each media item is actually referenced across your posts, not just where it was uploaded. Also includes a Where Used preset and developer filters for page builders.
+
+* New - "Used In" columns and "Unused" flag showing where each media item is referenced
+* New - "Where Used" preset for quick usage reports
+* New - "Parent Post" / "Parent URL" renamed "Uploaded To (Parent)" / "Uploaded To URL"
+* New - notice warning that the usage scan can be slow on large sites
+* New - developer filters emu_usage_extra_ids and emu_usage_post_types
+* Improvement - the usage scan runs only when a usage column is selected
+* Improvement - updated German, Spanish, French and Simplified Chinese translations

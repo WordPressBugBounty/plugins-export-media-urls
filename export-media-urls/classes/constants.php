@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
 class Constants
 {
     const PLUGIN_NAME = 'Export Media URLs';
-    const PLUGIN_VERSION = '3.0';
+    const PLUGIN_VERSION = '3.1';
     const PLUGIN_SLUG = 'export-media-urls';
     const PLUGIN_FILE = 'export-media-urls/export-media-urls.php';
     const PLUGIN_DIR = 'export-media-urls';
