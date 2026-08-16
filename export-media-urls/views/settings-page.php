@@ -50,6 +50,36 @@ $number_of_items    = ($emu_posted && isset($_POST['number-of-items'])) ? saniti
 $starting_point     = ($emu_posted && isset($_POST['starting-point'])) ? absint(wp_unslash($_POST['starting-point'])) : '';
 $ending_point       = ($emu_posted && isset($_POST['ending-point'])) ? absint(wp_unslash($_POST['ending-point'])) : '';
 
+/* Text handling, CSV shape and "Used In" reporting. Checkboxes vanish from
+   $_POST when unticked, so an actual submission is what distinguishes "the user
+   turned this off" from "no form has been posted yet, use the default". */
+$emu_checkbox = function ($name, $default) use ($form_submitted) {
+    if (!$form_submitted) {
+        return (bool) $default;
+    }
+    // phpcs:ignore WordPress.Security.NonceVerification.Missing -- $form_submitted is only true once the nonce verified above.
+    return isset($_POST[$name]);
+};
+
+$text_repair   = $emu_checkbox('text-repair', true);
+$text_entities = $emu_checkbox('text-entities', true);
+$text_ascii    = $emu_checkbox('text-ascii', false);
+$csv_flatten   = $emu_checkbox('csv-flatten', true);
+$usage_expand  = $emu_checkbox('usage-expand', false);
+$usage_deep    = $emu_checkbox('usage-deep', false);
+$usage_only    = $emu_checkbox('usage-only', false);
+
+$csv_delimiter = ($emu_posted && isset($_POST['csv-delimiter'])) ? sanitize_key(wp_unslash($_POST['csv-delimiter'])) : 'comma';
+if (!in_array($csv_delimiter, array('comma', 'semicolon', 'tab'), true)) {
+    $csv_delimiter = 'comma';
+}
+
+$csv_delimiters = array(
+    'comma'     => __('Comma  ,  (standard CSV)', 'export-media-urls'),
+    'semicolon' => __('Semicolon  ;  (Excel in most European locales)', 'export-media-urls'),
+    'tab'       => __('Tab  (TSV)', 'export-media-urls'),
+);
+
 $default_name = 'export-media-urls-' . wp_generate_password(20, false);
 $posted_name = ($emu_posted && isset($_POST['csv-file-name'])) ? sanitize_file_name(wp_unslash($_POST['csv-file-name'])) : '';
 $csv_name = ('' !== $posted_name) ? $posted_name : $default_name;
@@ -175,12 +205,41 @@ $admin_post_url = admin_url('admin-post.php');
                                         <?php esc_html_e('The "Used In" and "Unused" columns scan the content of every post and page to find where each media item is actually used. On large sites, or on small/shared hosting, this can be slow and memory-heavy and may hit a timeout or memory limit.', 'export-media-urls'); ?>
                                     </p>
                                     <p>
-                                        <?php esc_html_e('If the export fails or times out, use "Show Advanced Options" below to export a smaller item range at a time. These columns are optional — leave them unticked and the export runs exactly as before.', 'export-media-urls'); ?>
+                                        <?php esc_html_e('If the export fails or times out, use "Show Advanced Options" below to export a smaller item range at a time.', 'export-media-urls'); ?>
                                     </p>
                                     <p class="emu-usage-warning-note">
-                                        <?php esc_html_e('Note: "Unused" means the item was not found in any post or page content. References added by page builders, sliders, custom fields, widgets or theme options are not scanned, so please confirm before deleting anything.', 'export-media-urls'); ?>
+                                        <?php esc_html_e('References added by page builders, sliders, custom fields, widgets or theme options are not scanned, so please confirm before deleting anything.', 'export-media-urls'); ?>
                                     </p>
                                 </div>
+                            </td>
+                        </tr>
+
+                        <tr id="emuUsageOptionsRow" class="emu-usage-options-row" style="display: <?php echo $usage_selected ? 'table-row' : 'none'; ?>">
+                            <th><?php esc_html_e('"Used In" Options:', 'export-media-urls'); ?></th>
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="usage-expand" value="1" <?php checked($usage_expand); ?>>
+                                    <?php esc_html_e('One row per usage', 'export-media-urls'); ?>
+                                </label>
+                                <p class="description emu-option-note">
+                                    <?php esc_html_e('An item used in 3 posts exports as 3 rows instead of one. "Used In (count)" still shows the total on every row.', 'export-media-urls'); ?>
+                                </p>
+
+                                <label>
+                                    <input type="checkbox" name="usage-only" value="1" <?php checked($usage_only); ?>>
+                                    <?php esc_html_e('Only include items that are used somewhere', 'export-media-urls'); ?>
+                                </label>
+                                <p class="description emu-option-note">
+                                    <?php esc_html_e('Leaves out every item whose count is 0.', 'export-media-urls'); ?>
+                                </p>
+
+                                <label>
+                                    <input type="checkbox" name="usage-deep" value="1" <?php checked($usage_deep); ?>>
+                                    <?php esc_html_e('Also scan custom fields and page-builder data (slower)', 'export-media-urls'); ?>
+                                </label>
+                                <p class="description emu-option-note">
+                                    <?php esc_html_e('Also finds references in WooCommerce galleries, ACF fields and page-builder layouts. Often the reason a visible image reports 0. Reads every custom field, so it is slower.', 'export-media-urls'); ?>
+                                </p>
                             </td>
                         </tr>
 
@@ -246,6 +305,48 @@ $admin_post_url = admin_url('admin-post.php');
                         </tr>
 
                         <tr class="advance-options" style="display: <?php echo $show_advanced ? 'table-row' : 'none'; ?>">
+                            <th><?php esc_html_e('Text Handling:', 'export-media-urls'); ?></th>
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="text-repair" value="1" <?php checked($text_repair); ?>>
+                                    <?php esc_html_e('Repair mis-encoded characters', 'export-media-urls'); ?>
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" name="text-entities" value="1" <?php checked($text_entities); ?>>
+                                    <?php esc_html_e('Decode HTML entities', 'export-media-urls'); ?>
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" name="text-ascii" value="1" <?php checked($text_ascii); ?>>
+                                    <?php esc_html_e('Replace typographic characters with plain ASCII', 'export-media-urls'); ?>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr class="advance-options" style="display: <?php echo $show_advanced ? 'table-row' : 'none'; ?>">
+                            <th><?php esc_html_e('CSV Format:', 'export-media-urls'); ?></th>
+                            <td>
+                                <label>
+                                    <?php esc_html_e('Field delimiter:', 'export-media-urls'); ?>
+                                    <select name="csv-delimiter">
+                                        <?php foreach ($csv_delimiters as $value => $label) : ?>
+                                            <option value="<?php echo esc_attr($value); ?>" <?php selected($value, $csv_delimiter); ?>><?php echo esc_html($label); ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </label>
+
+                                <label>
+                                    <input type="checkbox" name="csv-flatten" value="1" <?php checked($csv_flatten); ?>>
+                                    <?php esc_html_e('Keep every record on one line', 'export-media-urls'); ?>
+                                </label>
+                                <p class="description emu-option-note">
+                                    <?php esc_html_e('Replaces line breaks inside a value with a space, so one record is always one line.', 'export-media-urls'); ?>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr class="advance-options" style="display: <?php echo $show_advanced ? 'table-row' : 'none'; ?>">
                             <th><?php esc_html_e('Download File Name:', 'export-media-urls'); ?></th>
                             <td>
                                 <label><input type="text" name="csv-file-name" value="<?php echo esc_attr($csv_name); ?>" size="40" /></label>
@@ -292,7 +393,7 @@ $admin_post_url = admin_url('admin-post.php');
                     <hr>
                     <h3><?php esc_html_e('Wanna say Thanks?', 'export-media-urls'); ?></h3>
                     <ul>
-                        <li><?php esc_html_e('Leave', 'export-media-urls'); ?> <a href="https://wordpress.org/support/plugin/export-media-urls/reviews/?filter=5#new-post" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a> <?php esc_html_e('rating', 'export-media-urls'); ?></li>
+                        <li><?php esc_html_e('Leave', 'export-media-urls'); ?> <a href="https://wordpress.org/support/plugin/export-media-urls/reviews/" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a> <?php esc_html_e('rating', 'export-media-urls'); ?></li>
                         <li><?php esc_html_e('Follow me on X:', 'export-media-urls'); ?> <a href="https://x.com/atlas_gondal" target="_blank">@Atlas_Gondal</a></li>
                     </ul>
                     <hr>

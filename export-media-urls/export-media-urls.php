@@ -4,7 +4,7 @@
  * Plugin Name: Export Media URLs
  * Plugin URI:  https://wordpress.org/plugins/export-media-urls/
  * Description: Extract every Media Library URL along with title, file name, size, dimensions, alt text, caption, MIME type, parent post and more. Filter by media type, attachment status, author and date range. Display in the dashboard or download as CSV or JSON. Useful for migrations, SEO/accessibility audits and library cleanup.
- * Version:     3.1
+ * Version:     3.2
  * Author:      Atlas Gondal
  * Author URI:  https://AtlasGondal.com/
  * License:     GPLv2 or later
@@ -189,7 +189,7 @@ class ExportMediaURLs
                 /* translators: 1: plugin name, 2: five-star rating link. */
                 __('Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'export-media-urls'),
                 '<strong>Export Media URLs</strong>',
-                '<a href="https://wordpress.org/support/plugin/export-media-urls/reviews/?filter=5#new-post" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+                '<a href="https://wordpress.org/support/plugin/export-media-urls/reviews/" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
             );
         }
 

@@ -52,6 +52,9 @@ class EMU_Usage_Index
     /** @var array post_id => attachment_id (from _thumbnail_id) */
     private $thumbs = array();
 
+    /** @var array post_id => true (every post the content pass actually scanned) */
+    private $scanned = array();
+
     /** @var string Path component of the uploads base URL, e.g. /wp-content/uploads */
     private $uploads_path = '';
 
@@ -60,8 +63,11 @@ class EMU_Usage_Index
 
     /**
      * Build the index. Safe to call more than once; only the first call works.
+     *
+     * @param bool $deep Also scan postmeta. Off by default — it reads the whole
+     *                   meta table.
      */
-    public function build()
+    public function build($deep = false)
     {
         if ($this->built) {
             return;
@@ -72,6 +78,10 @@ class EMU_Usage_Index
         $this->prime_thumbnails();
         $this->prime_uploads_path();
         $this->walk_posts();
+
+        if ($deep) {
+            $this->walk_postmeta();
+        }
     }
 
     /**
@@ -197,6 +207,7 @@ class EMU_Usage_Index
             }
 
             foreach ($rows as $row) {
+                $this->scanned[(int) $row->ID] = true;
                 $this->index_post((int) $row->ID, (string) $row->post_content, $has_extra);
                 $last = (int) $row->ID;
             }
@@ -252,6 +263,227 @@ class EMU_Usage_Index
         foreach ($found as $aid => $unused) {
             $this->index[$aid][$post_id] = true;
         }
+    }
+
+    /* ------------------------- the deep (postmeta) pass ------------------- */
+
+    /**
+     * Optional second pass over wp_postmeta, for references that never appear in
+     * post_content: WooCommerce galleries, ACF fields, page-builder blobs. The
+     * usual reason a visible media item reports "Used In (count)" = 0.
+     *
+     * Paginated by meta_id RANGE, not row count: rows are filtered after the
+     * range is chosen, so an empty batch does not mean end of table.
+     */
+    private function walk_postmeta()
+    {
+        global $wpdb;
+
+        $max_id = (int) $wpdb->get_var("SELECT MAX(meta_id) FROM {$wpdb->postmeta}");
+        if ($max_id <= 0) {
+            return;
+        }
+
+        $skip = $this->skipped_meta_keys();
+        $skip_placeholders = implode(', ', array_fill(0, count($skip), '%s'));
+
+        $gallery_keys = $this->gallery_meta_keys();
+        $gallery_placeholders = empty($gallery_keys) ? '' : implode(', ', array_fill(0, count($gallery_keys), '%s'));
+
+        // Pre-filter in SQL: page-builder rows are large, and pulling every one
+        // into PHP to discard it is what would exhaust memory. Safe because
+        // pagination is by range, so filtering cannot end the scan early.
+        $needles = array('%wp-image-%', '%"id":%', '%"ids":%', '%[gallery%');
+        $uploads_needle = $this->uploads_needle();
+        if ($uploads_needle !== '') {
+            $needles[] = '%' . $uploads_needle . '%';
+        }
+        $needle_sql = implode(' OR ', array_fill(0, count($needles), 'meta_value LIKE %s'));
+
+        $match_sql = '(' . $needle_sql . ')';
+        if ($gallery_placeholders !== '') {
+            $match_sql = '(' . $needle_sql . " OR meta_key IN ($gallery_placeholders))";
+        }
+
+        $sql = "SELECT post_id, meta_key, meta_value FROM {$wpdb->postmeta}
+                WHERE meta_id > %d AND meta_id <= %d
+                  AND meta_key NOT IN ($skip_placeholders)
+                  AND $match_sql";
+
+        $chunk = (int) Constants::META_CHUNK_SIZE;
+        if ($chunk < 1) {
+            $chunk = 2000;
+        }
+
+        $next_sql = "SELECT MIN(meta_id) FROM {$wpdb->postmeta} WHERE meta_id > %d";
+
+        $from = 0;
+        while ($from < $max_id) {
+            $to = $from + $chunk;
+
+            $args = array_merge(array($from, $to), $skip, $needles, $gallery_keys);
+            // call_user_func_array keeps prepare() happy on old WordPress, where
+            // it expected variadic args rather than a single array.
+            $prepared = call_user_func_array(array($wpdb, 'prepare'), array_merge(array($sql), $args));
+            $rows = $wpdb->get_results($prepared);
+
+            if (!empty($rows)) {
+                foreach ($rows as $row) {
+                    $this->index_meta((int) $row->post_id, (string) $row->meta_key, (string) $row->meta_value, $gallery_keys);
+                }
+                unset($rows);
+                $from = $to;
+                continue;
+            }
+
+            // Empty range. Auto-increment values routinely run far ahead of the
+            // row count, so skip straight to the next row that exists rather
+            // than stepping through thousands of empty ranges.
+            $next = $wpdb->get_var($wpdb->prepare($next_sql, $to));
+
+            if ($next === null || $next === '') {
+                // Nothing left, or the lookup failed. Stepping on is safe: the
+                // loop still ends at MAX(meta_id), so this costs speed only.
+                $from = $to;
+                continue;
+            }
+
+            $next = (int) $next;
+            $from = ($next > $to) ? ($next - 1) : $to;
+        }
+    }
+
+    /**
+     * Record the attachments referenced by a single meta value.
+     *
+     * @param int      $post_id
+     * @param string   $meta_key
+     * @param string   $meta_value
+     * @param string[] $gallery_keys Keys whose value is a bare list of IDs.
+     */
+    private function index_meta($post_id, $meta_key, $meta_value, $gallery_keys)
+    {
+        // Only posts the content pass accepted, or an attachment's own meta, a
+        // revision or a menu item could be reported as a usage.
+        if ($meta_value === '' || !isset($this->scanned[$post_id])) {
+            return;
+        }
+
+        $found = array();
+
+        // Bare ID lists, allow-listed keys only: a number under an arbitrary
+        // key is not evidence of anything.
+        if (in_array($meta_key, $gallery_keys, true) && preg_match('/^[0-9,\s]+$/', $meta_value)) {
+            foreach ($this->split_ids($meta_value) as $aid) {
+                if (isset($this->att_set[$aid])) {
+                    $found[$aid] = true;
+                }
+            }
+        }
+
+        // JSON and serialized blobs escape their slashes.
+        $unescaped = (strpos($meta_value, '\\/') !== false)
+            ? str_replace('\\/', '/', $meta_value)
+            : $meta_value;
+
+        foreach ($this->extract_ids($unescaped) as $aid) {
+            if (isset($this->att_set[$aid])) {
+                $found[$aid] = true;
+            }
+        }
+
+        foreach ($this->extract_url_ids($unescaped) as $aid) {
+            $found[$aid] = true;
+        }
+
+        foreach ($found as $aid => $unused) {
+            $this->index[$aid][$post_id] = true;
+        }
+    }
+
+    /**
+     * LIKE needle matching any reference to the uploads directory. Only the last
+     * path segment, because serialized and JSON values escape their slashes, so
+     * a needle containing slashes would miss the rows this scan is here for.
+     *
+     * @return string LIKE-escaped needle, or '' when it cannot be determined.
+     */
+    private function uploads_needle()
+    {
+        global $wpdb;
+
+        if ($this->uploads_path === '') {
+            return '';
+        }
+
+        $segment = wp_basename($this->uploads_path);
+        if ($segment === '' || strlen($segment) < 3) {
+            return '';
+        }
+
+        // esc_like() is WordPress 4.0+; escape by hand on older installs.
+        if (method_exists($wpdb, 'esc_like')) {
+            return $wpdb->esc_like($segment);
+        }
+
+        return addcslashes($segment, '_%\\');
+    }
+
+    /**
+     * Meta keys never worth scanning: WordPress bookkeeping, and the attachment
+     * blobs that would make every image look like it references itself.
+     *
+     * @return string[]
+     */
+    private function skipped_meta_keys()
+    {
+        $keys = array(
+            '_wp_attached_file',
+            '_wp_attachment_metadata',
+            '_wp_attachment_backup_sizes',
+            '_wp_old_slug',
+            '_wp_old_date',
+            '_edit_lock',
+            '_edit_last',
+            '_thumbnail_id', // already indexed, precisely, by prime_thumbnails()
+            '_pingme',
+            '_encloseme',
+        );
+
+        /**
+         * Filter the postmeta keys skipped by the deep "where used" scan.
+         *
+         * @param string[] $keys Meta keys to skip.
+         */
+        $keys = apply_filters('emu_usage_skip_meta_keys', $keys);
+
+        $keys = array_values(array_unique(array_filter(array_map('strval', (array) $keys), 'strlen')));
+
+        // prepare() needs at least one placeholder to bind.
+        return empty($keys) ? array('_edit_lock') : $keys;
+    }
+
+    /**
+     * Meta keys whose value is a bare comma-separated list of attachment IDs.
+     *
+     * @return string[]
+     */
+    private function gallery_meta_keys()
+    {
+        $keys = array(
+            '_product_image_gallery', // WooCommerce
+            'rank_math_facebook_image_id',
+            'rank_math_twitter_image_id',
+        );
+
+        /**
+         * Filter the postmeta keys treated as bare attachment-ID lists.
+         *
+         * @param string[] $keys Meta keys holding comma-separated IDs.
+         */
+        $keys = apply_filters('emu_usage_gallery_meta_keys', $keys);
+
+        return array_values(array_filter(array_map('strval', (array) $keys), 'strlen'));
     }
 
     /* ---------------------------- extraction ----------------------------- */

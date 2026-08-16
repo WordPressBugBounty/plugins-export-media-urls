@@ -5,6 +5,7 @@ namespace Export_Media_URLs;
 defined('ABSPATH') || exit;
 
 require_once plugin_dir_path(__FILE__) . 'constants.php';
+require_once plugin_dir_path(__FILE__) . 'class-text.php';
 
 /**
  * Output helpers for the three export targets: streamed CSV, streamed JSON,
@@ -16,6 +17,46 @@ require_once plugin_dir_path(__FILE__) . 'constants.php';
  */
 class EMU_Exporter
 {
+    /** @var string Character written between CSV fields. */
+    private $delimiter = ',';
+
+    /** @var bool Whether line breaks inside a CSV field are collapsed. */
+    private $flatten = true;
+
+    /** @var string Text substituted for each run of line breaks when flattening. */
+    private $flatten_with = ' ';
+
+    /**
+     * Configure CSV output. Called once per run.
+     *
+     * @param array $o Sanitized options (csv_delimiter / csv_flatten).
+     */
+    public function configure_csv($o)
+    {
+        $this->delimiter = self::delimiter_char(isset($o['csv_delimiter']) ? $o['csv_delimiter'] : 'comma');
+        $this->flatten = !empty($o['csv_flatten']);
+    }
+
+    /**
+     * Delimiter choice to character. Unrecognised values fall back to a comma,
+     * so a tampered value can never emit an arbitrary byte.
+     *
+     * @param string $choice
+     * @return string
+     */
+    public static function delimiter_char($choice)
+    {
+        switch ($choice) {
+            case 'semicolon':
+                return ';';
+            case 'tab':
+                return "\t";
+            case 'comma':
+            default:
+                return ',';
+        }
+    }
+
     /**
      * Neutralize spreadsheet formula injection.
      *
@@ -55,10 +96,7 @@ class EMU_Exporter
             $filename = 'export-media-urls';
         }
 
-        // A downloaded CSV/JSON file must contain nothing but our data. Discard
-        // any open output buffer (stray notices/warnings from other plugins)
-        // right before we send headers, and stop further "doing it wrong"
-        // notices from printing into the body for the rest of this request.
+        // A downloaded CSV/JSON file must contain nothing but our data.
         while (ob_get_level() > 0) {
             ob_end_clean();
         }
@@ -71,6 +109,8 @@ class EMU_Exporter
 
     /**
      * Encode one CSV record (RFC 4180): every field quoted, inner quotes doubled.
+     * Quoting handles delimiters and quotes, but not line breaks inside a value
+     * — flattening collapses those so one record is always one line.
      *
      * @param array $fields
      * @return string
@@ -79,14 +119,24 @@ class EMU_Exporter
     {
         $cells = array();
         foreach ($fields as $field) {
-            $value = $this->neutralize($field);
-            $cells[] = '"' . str_replace('"', '""', (string) $value) . '"';
+            $value = (string) $field;
+            if ($this->flatten) {
+                $value = EMU_Text::flatten($value, $this->flatten_with);
+            } else {
+                // Line breaks are kept on purpose; stray control characters are not.
+                $value = EMU_Text::strip_controls($value);
+            }
+            $value = $this->neutralize($value);
+            $cells[] = '"' . str_replace('"', '""', $value) . '"';
         }
-        return implode(',', $cells) . "\r\n";
+        return implode($this->delimiter, $cells) . "\r\n";
     }
 
     /**
      * Encode one row as a JSON object keyed by the column labels.
+     *
+     * json_encode() returns false on invalid UTF-8, which used to leave a hole
+     * in the array and break the whole download. Values are repaired first.
      *
      * @param array $labels
      * @param array $row
@@ -96,11 +146,24 @@ class EMU_Exporter
     {
         $record = array();
         foreach ($labels as $i => $label) {
-            $record[(string) $label] = isset($row[$i]) ? $row[$i] : '';
+            $key = EMU_Text::ensure_utf8((string) $label);
+            $record[$key] = isset($row[$i]) ? EMU_Text::ensure_utf8((string) $row[$i]) : '';
         }
+
         // json_encode() (PHP 5.2+) is used directly so the plugin supports WordPress 3.6 (wp_json_encode is 4.1+).
         // phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode -- intentional for WordPress 3.6 compatibility.
-        return json_encode($record);
+        $encoded = json_encode($record);
+        if (!is_string($encoded)) {
+            // Last resort: same keys, empty values, so the array stays valid.
+            $safe = array();
+            foreach (array_keys($record) as $key) {
+                $safe[$key] = '';
+            }
+            // phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode -- intentional for WordPress 3.6 compatibility.
+            $encoded = json_encode($safe);
+        }
+
+        return is_string($encoded) ? $encoded : '{}';
     }
 
     /**

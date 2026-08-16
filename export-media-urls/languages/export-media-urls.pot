@@ -2,21 +2,21 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Export Media URLs 3.1\n"
+"Project-Id-Version: Export Media URLs 3.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/export-media-urls\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-10T05:48:36+00:00\n"
+"POT-Creation-Date: 2026-08-12T00:00:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: export-media-urls\n"
 
 #. Plugin Name of the plugin
+#: classes/class-functions.php:149
 #: export-media-urls.php
-#: classes/class-functions.php:124
 #: export-media-urls.php:119
 #: export-media-urls.php:126
 #: export-media-urls.php:130
@@ -43,208 +43,216 @@ msgstr ""
 msgid "https://AtlasGondal.com/"
 msgstr ""
 
-#: classes/class-exporter.php:115
+#: classes/class-exporter.php:181
 msgid "Below is a list of Exported Media Data:"
 msgstr ""
 
-#: classes/class-exporter.php:116
+#: classes/class-exporter.php:182
 msgid "Total number of items"
 msgstr ""
 
-#: classes/class-exporter.php:120
+#: classes/class-exporter.php:186
 msgid "Results per page:"
 msgstr ""
 
-#: classes/class-exporter.php:125
-#: views/settings-page.php:71
-#: views/settings-page.php:81
-#: views/settings-page.php:222
-#: views/settings-page.php:239
+#: classes/class-exporter.php:191
+#: views/settings-page.php:101
+#: views/settings-page.php:111
+#: views/settings-page.php:281
+#: views/settings-page.php:298
 #: views/tools-tab.php:125
 msgid "All"
 msgstr ""
 
-#: classes/class-exporter.php:150
+#: classes/class-exporter.php:216
 msgid "Previous"
 msgstr ""
 
-#: classes/class-exporter.php:152
+#: classes/class-exporter.php:218
 #: views/tools-tab.php:158
 #: views/tools-tab.php:160
 msgid "Next"
 msgstr ""
 
-#: classes/class-fields.php:29
+#: classes/class-fields.php:30
 msgid "Core"
 msgstr ""
 
-#: classes/class-fields.php:30
+#: classes/class-fields.php:31
 msgid "File"
 msgstr ""
 
-#: classes/class-fields.php:31
+#: classes/class-fields.php:32
 msgid "Meta"
 msgstr ""
 
-#: classes/class-fields.php:32
+#: classes/class-fields.php:33
 msgid "Relations"
 msgstr ""
 
-#: classes/class-fields.php:33
+#: classes/class-fields.php:34
 msgid "Dates"
 msgstr ""
 
-#: classes/class-fields.php:45
+#: classes/class-fields.php:46
 msgid "Migration"
 msgstr ""
 
-#: classes/class-fields.php:46
+#: classes/class-fields.php:47
 msgid "SEO / Accessibility"
 msgstr ""
 
-#: classes/class-fields.php:47
+#: classes/class-fields.php:48
 msgid "Where Used"
 msgstr ""
 
-#: classes/class-fields.php:48
+#: classes/class-fields.php:49
 msgid "Cleanup"
 msgstr ""
 
-#: classes/class-fields.php:49
+#: classes/class-fields.php:50
 msgid "Full"
 msgstr ""
 
-#: classes/class-fields.php:50
-#: views/settings-page.php:157
+#: classes/class-fields.php:51
+#: views/settings-page.php:187
 msgid "None"
 msgstr ""
 
-#: classes/class-fields.php:63
+#: classes/class-fields.php:71
 #: views/tools-tab.php:267
 #: views/tools-tab.php:333
 msgid "ID"
 msgstr ""
 
-#: classes/class-fields.php:64
+#: classes/class-fields.php:72
 #: views/tools-tab.php:268
 #: views/tools-tab.php:334
 #: views/tools-tab.php:366
 msgid "Title"
 msgstr ""
 
-#: classes/class-fields.php:65
+#: classes/class-fields.php:73
 msgid "File Name"
 msgstr ""
 
-#: classes/class-fields.php:66
+#: classes/class-fields.php:74
 msgid "URL"
 msgstr ""
 
-#: classes/class-fields.php:69
+#: classes/class-fields.php:77
 #: views/tools-tab.php:335
 msgid "File Size"
 msgstr ""
 
-#: classes/class-fields.php:70
+#: classes/class-fields.php:78
 msgid "MIME Type"
 msgstr ""
 
-#: classes/class-fields.php:71
+#: classes/class-fields.php:79
 #: views/tools-tab.php:336
 msgid "Dimensions"
 msgstr ""
 
-#: classes/class-fields.php:72
+#: classes/class-fields.php:80
 msgid "Thumbnail URL"
 msgstr ""
 
-#: classes/class-fields.php:73
+#: classes/class-fields.php:81
 msgid "Medium URL"
 msgstr ""
 
-#: classes/class-fields.php:74
+#: classes/class-fields.php:82
 msgid "Large URL"
 msgstr ""
 
-#: classes/class-fields.php:77
+#: classes/class-fields.php:85
 msgid "Caption"
 msgstr ""
 
-#: classes/class-fields.php:78
+#: classes/class-fields.php:86
 #: views/tab-nav.php:26
 #: views/tools-tab.php:210
 #: views/tools-tab.php:367
 msgid "Alt Text"
 msgstr ""
 
-#: classes/class-fields.php:79
+#: classes/class-fields.php:87
 msgid "Alt Missing"
 msgstr ""
 
-#: classes/class-fields.php:80
+#: classes/class-fields.php:88
 msgid "Description"
 msgstr ""
 
-#: classes/class-fields.php:83
+#: classes/class-fields.php:91
 msgid "Uploaded To (Parent)"
 msgstr ""
 
-#: classes/class-fields.php:84
+#: classes/class-fields.php:92
 msgid "Uploaded To URL"
 msgstr ""
 
-#: classes/class-fields.php:85
+#: classes/class-fields.php:93
 msgid "Used In (count)"
 msgstr ""
 
-#: classes/class-fields.php:86
+#: classes/class-fields.php:94
 msgid "Used In (posts)"
 msgstr ""
 
-#: classes/class-fields.php:87
+#: classes/class-fields.php:95
 msgid "Used In (URLs)"
 msgstr ""
 
-#: classes/class-fields.php:88
+#: classes/class-fields.php:96
+msgid "Used In (post ID)"
+msgstr ""
+
+#: classes/class-fields.php:97
+msgid "Used In (post type)"
+msgstr ""
+
+#: classes/class-fields.php:98
 msgid "Unused"
 msgstr ""
 
-#: classes/class-fields.php:91
+#: classes/class-fields.php:101
 msgid "Date Uploaded"
 msgstr ""
 
-#: classes/class-fields.php:268
-#: classes/class-fields.php:335
+#: classes/class-fields.php:292
+#: classes/class-fields.php:377
 msgid "Yes"
 msgstr ""
 
-#: classes/class-functions.php:123
-#: classes/class-functions.php:170
+#: classes/class-functions.php:148
+#: classes/class-functions.php:198
 msgid "No result found in that range, please reselect and try again!"
 msgstr ""
 
 #: classes/class-media-tools.php:348
-#: views/settings-page.php:63
+#: views/settings-page.php:93
 msgid "Images"
 msgstr ""
 
 #: classes/class-media-tools.php:351
-#: views/settings-page.php:64
+#: views/settings-page.php:94
 msgid "Video"
 msgstr ""
 
 #: classes/class-media-tools.php:354
-#: views/settings-page.php:65
+#: views/settings-page.php:95
 msgid "Audio"
 msgstr ""
 
 #: classes/class-media-tools.php:361
-#: views/settings-page.php:67
+#: views/settings-page.php:97
 msgid "Archives"
 msgstr ""
 
 #: classes/class-media-tools.php:364
-#: views/settings-page.php:66
+#: views/settings-page.php:96
 msgid "Documents"
 msgstr ""
 
@@ -252,19 +260,19 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: classes/class-request.php:81
+#: classes/class-request.php:157
 msgid "Sorry, you missed something. Please select at least one <strong>field</strong> to export, and try again. :)"
 msgstr ""
 
-#: classes/class-request.php:85
+#: classes/class-request.php:161
 msgid "Invalid/Missing download File Name!"
 msgstr ""
 
-#: classes/class-request.php:90
+#: classes/class-request.php:166
 msgid "Please select both dates!"
 msgstr ""
 
-#: classes/class-request.php:93
+#: classes/class-request.php:169
 msgid "Start date cannot be greater than end date!"
 msgstr ""
 
@@ -275,8 +283,8 @@ msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
 #: export-media-urls.php:118
-#: views/settings-page.php:321
-#: views/settings-page.php:327
+#: views/settings-page.php:422
+#: views/settings-page.php:428
 #: views/tools-tab.php:182
 msgid "Security token validation failed!"
 msgstr ""
@@ -298,9 +306,7 @@ msgstr ""
 msgid "You are using PHP version"
 msgstr ""
 
-#. translators: %s: minimum required PHP version.
 #: export-media-urls.php:152
-#, php-format
 msgid "This plugin requires PHP version %s or greater."
 msgstr ""
 
@@ -318,197 +324,268 @@ msgstr ""
 
 #. translators: 1: plugin name, 2: five-star rating link.
 #: export-media-urls.php:190
-#, php-format
 msgid "Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!"
 msgstr ""
 
-#: views/settings-page.php:62
+#: views/settings-page.php:78
+msgid "Comma  ,  (standard CSV)"
+msgstr ""
+
+#: views/settings-page.php:79
+msgid "Semicolon  ;  (Excel in most European locales)"
+msgstr ""
+
+#: views/settings-page.php:80
+msgid "Tab  (TSV)"
+msgstr ""
+
+#: views/settings-page.php:92
 msgid "All Media"
 msgstr ""
 
-#: views/settings-page.php:72
+#: views/settings-page.php:102
 msgid "Attached (used by a post)"
 msgstr ""
 
-#: views/settings-page.php:73
+#: views/settings-page.php:103
 msgid "Unattached (orphaned)"
 msgstr ""
 
-#: views/settings-page.php:77
+#: views/settings-page.php:107
 msgid "CSV File"
 msgstr ""
 
-#: views/settings-page.php:78
+#: views/settings-page.php:108
 msgid "JSON File"
 msgstr ""
 
-#: views/settings-page.php:112
+#: views/settings-page.php:142
 msgid "Hide Filter Options"
 msgstr ""
 
-#: views/settings-page.php:112
+#: views/settings-page.php:142
 msgid "Show Filter Options"
 msgstr ""
 
-#: views/settings-page.php:114
+#: views/settings-page.php:144
 msgid "Hide Advanced Options"
 msgstr ""
 
-#: views/settings-page.php:114
+#: views/settings-page.php:144
 msgid "Show Advanced Options"
 msgstr ""
 
-#: views/settings-page.php:124
+#: views/settings-page.php:154
 msgid "Export every Media Library URL as CSV or JSON, or view them right here."
 msgstr ""
 
-#: views/settings-page.php:136
+#: views/settings-page.php:166
 msgid "Export Fields:"
 msgstr ""
 
-#: views/settings-page.php:139
+#: views/settings-page.php:169
 msgid "Presets:"
 msgstr ""
 
-#: views/settings-page.php:155
+#: views/settings-page.php:185
 msgid "Select all"
 msgstr ""
 
-#: views/settings-page.php:174
+#: views/settings-page.php:204
 msgid "Heads up:"
 msgstr ""
 
-#: views/settings-page.php:175
+#: views/settings-page.php:205
 msgid "The \"Used In\" and \"Unused\" columns scan the content of every post and page to find where each media item is actually used. On large sites, or on small/shared hosting, this can be slow and memory-heavy and may hit a timeout or memory limit."
 msgstr ""
 
-#: views/settings-page.php:178
-msgid "If the export fails or times out, use \"Show Advanced Options\" below to export a smaller item range at a time. These columns are optional — leave them unticked and the export runs exactly as before."
-msgstr ""
-
-#: views/settings-page.php:181
-msgid "Note: \"Unused\" means the item was not found in any post or page content. References added by page builders, sliders, custom fields, widgets or theme options are not scanned, so please confirm before deleting anything."
-msgstr ""
-
-#: views/settings-page.php:188
-msgid "Media Type:"
-msgstr ""
-
-#: views/settings-page.php:202
-msgid "Attachment Status:"
+#: views/settings-page.php:208
+msgid "If the export fails or times out, use \"Show Advanced Options\" below to export a smaller item range at a time."
 msgstr ""
 
 #: views/settings-page.php:211
-msgid "By Author:"
+msgid "References added by page builders, sliders, custom fields, widgets or theme options are not scanned, so please confirm before deleting anything."
 msgstr ""
 
-#: views/settings-page.php:220
-msgid "Date Range:"
+#: views/settings-page.php:218
+msgid "\"Used In\" Options:"
 msgstr ""
 
-#: views/settings-page.php:223
-msgid "Between Dates"
+#: views/settings-page.php:222
+msgid "One row per usage"
 msgstr ""
 
 #: views/settings-page.php:225
-#: views/settings-page.php:242
+msgid "An item used in 3 posts exports as 3 rows instead of one. \"Used In (count)\" still shows the total on every row."
+msgstr ""
+
+#: views/settings-page.php:230
+msgid "Only include items that are used somewhere"
+msgstr ""
+
+#: views/settings-page.php:233
+msgid "Leaves out every item whose count is 0."
+msgstr ""
+
+#: views/settings-page.php:238
+msgid "Also scan custom fields and page-builder data (slower)"
+msgstr ""
+
+#: views/settings-page.php:241
+msgid "Also finds references in WooCommerce galleries, ACF fields and page-builder layouts. Often the reason a visible image reports 0. Reads every custom field, so it is slower."
+msgstr ""
+
+#: views/settings-page.php:247
+msgid "Media Type:"
+msgstr ""
+
+#: views/settings-page.php:261
+msgid "Attachment Status:"
+msgstr ""
+
+#: views/settings-page.php:270
+msgid "By Author:"
+msgstr ""
+
+#: views/settings-page.php:279
+msgid "Date Range:"
+msgstr ""
+
+#: views/settings-page.php:282
+msgid "Between Dates"
+msgstr ""
+
+#: views/settings-page.php:284
+#: views/settings-page.php:301
 msgid "From:"
 msgstr ""
 
-#: views/settings-page.php:226
-#: views/settings-page.php:243
+#: views/settings-page.php:285
+#: views/settings-page.php:302
 msgid "To:"
 msgstr ""
 
-#: views/settings-page.php:237
+#: views/settings-page.php:296
 msgid "Number of Items:"
 msgstr ""
 
-#: views/settings-page.php:237
+#: views/settings-page.php:296
 msgid "Specify a range to extract. Useful in case of a Memory Out error on large libraries!"
 msgstr ""
 
-#: views/settings-page.php:240
+#: views/settings-page.php:299
 msgid "Specify Range"
 msgstr ""
 
-#: views/settings-page.php:249
+#: views/settings-page.php:308
+msgid "Text Handling:"
+msgstr ""
+
+#: views/settings-page.php:312
+msgid "Repair mis-encoded characters"
+msgstr ""
+
+#: views/settings-page.php:317
+msgid "Decode HTML entities"
+msgstr ""
+
+#: views/settings-page.php:322
+msgid "Replace typographic characters with plain ASCII"
+msgstr ""
+
+#: views/settings-page.php:328
+msgid "CSV Format:"
+msgstr ""
+
+#: views/settings-page.php:331
+msgid "Field delimiter:"
+msgstr ""
+
+#: views/settings-page.php:341
+msgid "Keep every record on one line"
+msgstr ""
+
+#: views/settings-page.php:344
+msgid "Replaces line breaks inside a value with a space, so one record is always one line."
+msgstr ""
+
+#: views/settings-page.php:350
 msgid "Download File Name:"
 msgstr ""
 
-#: views/settings-page.php:256
+#: views/settings-page.php:357
 msgid "Download Format:"
 msgstr ""
 
-#: views/settings-page.php:267
+#: views/settings-page.php:368
 msgid "Download"
 msgstr ""
 
-#: views/settings-page.php:268
+#: views/settings-page.php:369
 msgid "Display Here"
 msgstr ""
 
-#: views/settings-page.php:285
+#: views/settings-page.php:386
 msgid "Want to Support?"
 msgstr ""
 
-#: views/settings-page.php:287
+#: views/settings-page.php:388
 msgid "If you enjoyed the plugin, and want to support:"
 msgstr ""
 
-#: views/settings-page.php:289
+#: views/settings-page.php:390
 msgid "Hire me"
 msgstr ""
 
-#: views/settings-page.php:289
+#: views/settings-page.php:390
 msgid "on a project"
 msgstr ""
 
-#: views/settings-page.php:290
+#: views/settings-page.php:391
 msgid "Buy me a Coffee"
 msgstr ""
 
-#: views/settings-page.php:293
+#: views/settings-page.php:394
 msgid "Wanna say Thanks?"
 msgstr ""
 
-#: views/settings-page.php:295
+#: views/settings-page.php:396
 msgid "Leave"
 msgstr ""
 
-#: views/settings-page.php:295
+#: views/settings-page.php:396
 msgid "rating"
 msgstr ""
 
-#: views/settings-page.php:296
+#: views/settings-page.php:397
 msgid "Follow me on X:"
 msgstr ""
 
-#: views/settings-page.php:299
+#: views/settings-page.php:400
 msgid "Got a Problem?"
 msgstr ""
 
-#: views/settings-page.php:300
+#: views/settings-page.php:401
 msgid "Want to report a bug or suggest a feature? You can:"
 msgstr ""
 
-#: views/settings-page.php:302
+#: views/settings-page.php:403
 msgid "Create"
 msgstr ""
 
-#: views/settings-page.php:302
+#: views/settings-page.php:403
 msgid "Support Ticket"
 msgstr ""
 
-#: views/settings-page.php:303
+#: views/settings-page.php:404
 msgid "Write me an"
 msgstr ""
 
-#: views/settings-page.php:303
+#: views/settings-page.php:404
 msgid "Email"
 msgstr ""
 
-#: views/settings-page.php:306
+#: views/settings-page.php:407
 msgid "Developed by:"
 msgstr ""
 
@@ -550,9 +627,7 @@ msgstr ""
 msgid "Prev"
 msgstr ""
 
-#. translators: 1: current page, 2: total pages, 3: total items.
 #: views/tools-tab.php:154
-#, php-format
 msgid "Page %1$s of %2$s (%3$s items)"
 msgstr ""
 
@@ -560,9 +635,7 @@ msgstr ""
 msgid "Audit and clean up your Media Library."
 msgstr ""
 
-#. translators: %d: number of images whose alt text was updated.
 #: views/tools-tab.php:178
-#, php-format
 msgid "Updated alt text for %d image."
 msgid_plural "Updated alt text for %d images."
 msgstr[0] ""
@@ -628,15 +701,11 @@ msgstr ""
 msgid "No duplicate files found."
 msgstr ""
 
-#. translators: 1: group number, 2: human-readable file size.
 #: views/tools-tab.php:299
-#, php-format
 msgid "Duplicate group %1$d — %2$s each"
 msgstr ""
 
-#. translators: 1: file size threshold, 2: pixel dimension threshold.
 #: views/tools-tab.php:324
-#, php-format
 msgid "Images larger than %1$s, or wider/taller than %2$d px — likely candidates for optimization."
 msgstr ""
 
@@ -663,3 +732,4 @@ msgstr ""
 #: views/tools-tab.php:386
 msgid "Save Alt Text"
 msgstr ""
+

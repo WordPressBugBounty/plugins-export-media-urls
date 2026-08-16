@@ -5,6 +5,7 @@ namespace Export_Media_URLs;
 defined('ABSPATH') || exit;
 
 require_once plugin_dir_path(__FILE__) . 'constants.php';
+require_once plugin_dir_path(__FILE__) . 'class-request.php';
 require_once plugin_dir_path(__FILE__) . 'class-fields.php';
 require_once plugin_dir_path(__FILE__) . 'class-query.php';
 require_once plugin_dir_path(__FILE__) . 'class-exporter.php';
@@ -46,6 +47,7 @@ class EMU_Functions
      */
     public function each_row($options, $callback)
     {
+        $options = EMU_Request::with_defaults($options);
         $need_meta = $this->fields->needs_meta($options['export_fields']);
 
         // Build the where-used index once per run, and only when a usage column
@@ -53,8 +55,11 @@ class EMU_Functions
         $usage = null;
         if ($this->fields->needs_usage($options['export_fields'])) {
             $usage = new EMU_Usage_Index();
-            $usage->build();
+            $usage->build(!empty($options['usage_deep']));
         }
+
+        $expand = ($usage !== null) && !empty($options['usage_expand']);
+        $only_used = ($usage !== null) && !empty($options['usage_only']);
 
         $args_base = EMU_Query::build($options);
         $args_base['no_found_rows'] = true;                 // skip SQL_CALC_FOUND_ROWS (slow on big tables)
@@ -65,7 +70,10 @@ class EMU_Functions
         $start = ($options['offset'] === 'all' || $options['offset'] === '') ? 0 : (int) $options['offset'];
         $limit = ($options['post_per_page'] === 'all') ? -1 : (int) $options['post_per_page'];
 
+        // $fetched counts attachments, not rows, so "Number of items" keeps
+        // meaning "media items" when one item expands to many rows.
         $fetched = 0;
+        $emitted = 0;
         while (true) {
             $this_batch = $batch;
             if ($limit !== -1) {
@@ -92,14 +100,29 @@ class EMU_Functions
                 $post_id = get_the_ID();
                 $context = $this->build_context($post_id, $need_meta, $usage);
 
-                $row = array();
-                foreach ($options['export_fields'] as $key) {
-                    $row[] = $this->fields->value($key, $post_id, $options, $context);
-                }
-                call_user_func($callback, $row);
-
                 $in_batch++;
                 $fetched++;
+
+                if ($only_used && empty($context['used_in'])) {
+                    continue; // skipped, but still counted as fetched
+                }
+
+                // One row per referencing post when expanding, otherwise one
+                // combined row. Items with no usages still get one blank row.
+                $rows_for_item = ($expand && !empty($context['used_in']))
+                    ? $context['used_in']
+                    : array(null);
+
+                foreach ($rows_for_item as $usage_row) {
+                    $context['usage_row'] = $usage_row;
+
+                    $row = array();
+                    foreach ($options['export_fields'] as $key) {
+                        $row[] = $this->fields->value($key, $post_id, $options, $context);
+                    }
+                    call_user_func($callback, $row);
+                    $emitted++;
+                }
             }
             wp_reset_postdata();
 
@@ -108,7 +131,7 @@ class EMU_Functions
             }
         }
 
-        return $fetched;
+        return $emitted;
     }
 
     /**
@@ -118,6 +141,8 @@ class EMU_Functions
      */
     public function stream($options)
     {
+        $options = EMU_Request::with_defaults($options);
+
         if (!$this->has_any($options)) {
             wp_die(
                 esc_html__('No result found in that range, please reselect and try again!', 'export-media-urls'),
@@ -128,6 +153,7 @@ class EMU_Functions
 
         $labels = $this->fields->labels_for($options['export_fields']);
         $exporter = $this->exporter;
+        $exporter->configure_csv($options);
 
         if ($options['export_type'] === 'json') {
             $exporter->send_download_headers('application/json', $options['csv_name'], 'json');
@@ -161,6 +187,8 @@ class EMU_Functions
      */
     public function render_here($options)
     {
+        $options = EMU_Request::with_defaults($options);
+
         $rows = array();
         $this->each_row($options, function ($row) use (&$rows) {
             $rows[] = $row;
@@ -218,6 +246,8 @@ class EMU_Functions
 
         $used_in = ($usage !== null) ? $usage->used_in($post_id) : array();
 
-        return array('meta' => $meta, 'used_in' => $used_in);
+        // 'usage_row' is set per emitted row by each_row(); null means the row
+        // covers every referencing post at once.
+        return array('meta' => $meta, 'used_in' => $used_in, 'usage_row' => null);
     }
 }

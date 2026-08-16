@@ -82,12 +82,14 @@ function emuSetGroup(groupKey, state) {
 /* Show the "resource intensive" warning only while a where-used column
  * (data-emu-usage) is ticked. */
 function emuSyncUsageWarning() {
-    var row = document.getElementById('emuUsageWarningRow');
-    if (!row) {
-        return;
-    }
     var active = document.querySelector('input[name="export_fields[]"][data-emu-usage="1"]:checked');
-    row.style.display = active ? 'table-row' : 'none';
+    var ids = ['emuUsageWarningRow', 'emuUsageOptionsRow'];
+    for (var i = 0; i < ids.length; i++) {
+        var row = document.getElementById(ids[i]);
+        if (row) {
+            row.style.display = active ? 'table-row' : 'none';
+        }
+    }
 }
 
 /* Paginate the on-screen results table in the browser. Page size comes from

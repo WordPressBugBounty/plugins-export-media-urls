@@ -586,3 +586,31 @@
         position: static;
     }
 }
+
+/* --- Export options: per-checkbox explanatory notes --- */
+
+.emu-usage-options-row td label,
+.advance-options td label {
+    display: inline-block;
+}
+
+.emu-option-note {
+    margin: 2px 0 12px 24px;
+    max-width: 640px;
+    color: #646970;
+}
+
+.emu-option-note:last-child {
+    margin-bottom: 0;
+}
+
+.emu-option-note code {
+    padding: 1px 5px;
+    background: #f0f0f1;
+    font-size: 12px;
+}
+
+.emu-usage-options-row th {
+    vertical-align: top;
+    padding-top: 12px;
+}

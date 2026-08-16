@@ -53,6 +53,24 @@ class EMU_Request
 
         $csv_name = isset($_POST['csv-file-name']) ? sanitize_file_name(wp_unslash($_POST['csv-file-name'])) : '';
 
+        // Unticked checkboxes are absent from $_POST, so only a real submission
+        // can distinguish "off" from "not set".
+        $submitted = isset($_POST['form_submitted']);
+
+        $text_repair   = self::checkbox('text-repair', $submitted, true);
+        $text_entities = self::checkbox('text-entities', $submitted, true);
+        $text_ascii    = self::checkbox('text-ascii', $submitted, false);
+        $csv_flatten   = self::checkbox('csv-flatten', $submitted, true);
+
+        $csv_delimiter = isset($_POST['csv-delimiter']) ? sanitize_key(wp_unslash($_POST['csv-delimiter'])) : 'comma';
+        if (!in_array($csv_delimiter, array('comma', 'semicolon', 'tab'), true)) {
+            $csv_delimiter = 'comma';
+        }
+
+        $usage_expand = self::checkbox('usage-expand', $submitted, false);
+        $usage_deep   = self::checkbox('usage-deep', $submitted, false);
+        $usage_only   = self::checkbox('usage-only', $submitted, false);
+
         return array(
             'export_type'       => $export_type,
             'export_fields'     => $export_fields,
@@ -66,7 +84,65 @@ class EMU_Request
             'offset'            => $offset,
             'post_per_page'     => $post_per_page,
             'csv_name'          => $csv_name,
+
+            /* Text handling. */
+            'text_repair'       => $text_repair,
+            'text_entities'     => $text_entities,
+            'text_ascii'        => $text_ascii,
+
+            /* CSV shape. */
+            'csv_delimiter'     => $csv_delimiter,
+            'csv_flatten'       => $csv_flatten,
+
+            /* "Used In" reporting. */
+            'usage_expand'      => $usage_expand,
+            'usage_deep'        => $usage_deep,
+            'usage_only'        => $usage_only,
         );
+    }
+
+    /**
+     * Read one checkbox from the (already nonce-verified) $_POST.
+     *
+     * @param string $name      Field name.
+     * @param bool   $submitted Whether this really is a form submission.
+     * @param bool   $default   Value to use when the form was not submitted.
+     * @return bool
+     */
+    private static function checkbox($name, $submitted, $default)
+    {
+        if (!$submitted) {
+            return $default;
+        }
+        return isset($_POST[$name]); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- caller verified the nonce.
+    }
+
+    /**
+     * Fill in omitted options so consumers can read the keys unconditionally.
+     *
+     * @param array $o
+     * @return array
+     */
+    public static function with_defaults($o)
+    {
+        $defaults = array(
+            'text_repair'   => true,
+            'text_entities' => true,
+            'text_ascii'    => false,
+            'csv_delimiter' => 'comma',
+            'csv_flatten'   => true,
+            'usage_expand'  => false,
+            'usage_deep'    => false,
+            'usage_only'    => false,
+        );
+
+        foreach ($defaults as $key => $value) {
+            if (!isset($o[$key])) {
+                $o[$key] = $value;
+            }
+        }
+
+        return $o;
     }
 
     /**

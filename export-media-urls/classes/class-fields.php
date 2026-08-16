@@ -5,6 +5,7 @@ namespace Export_Media_URLs;
 defined('ABSPATH') || exit;
 
 require_once plugin_dir_path(__FILE__) . 'constants.php';
+require_once plugin_dir_path(__FILE__) . 'class-text.php';
 
 /**
  * Single source of truth for export columns.
@@ -54,14 +55,21 @@ class EMU_Fields
     /**
      * The ordered field registry.
      *
-     * @return array key => array(label, group, cb)
+     * 'text' => true routes the field through EMU_Text normalisation. File names
+     * and URLs are deliberately unmarked: their characters must survive as
+     * stored, though ensure_utf8() still applies to every field.
+     *
+     * 'html_decode' => true preserves the pre-3.2 htmlspecialchars_decode()
+     * behaviour when full entity decoding is switched off.
+     *
+     * @return array key => array(label, group, cb, text, html_decode)
      */
     public function fields()
     {
         return array(
             // --- Core ---
             'id'          => array('label' => __('ID', 'export-media-urls'),            'group' => 'core',      'cb' => 'f_id'),
-            'title'       => array('label' => __('Title', 'export-media-urls'),         'group' => 'core',      'cb' => 'f_title'),
+            'title'       => array('label' => __('Title', 'export-media-urls'),         'group' => 'core',      'cb' => 'f_title',      'text' => true, 'html_decode' => true),
             'file_name'   => array('label' => __('File Name', 'export-media-urls'),     'group' => 'core',      'cb' => 'f_file_name'),
             'url'         => array('label' => __('URL', 'export-media-urls'),           'group' => 'core',      'cb' => 'f_url'),
 
@@ -74,17 +82,19 @@ class EMU_Fields
             'url_large'   => array('label' => __('Large URL', 'export-media-urls'),     'group' => 'file',      'cb' => 'f_url_large'),
 
             // --- Meta ---
-            'caption'     => array('label' => __('Caption', 'export-media-urls'),       'group' => 'meta',      'cb' => 'f_caption'),
-            'alt'         => array('label' => __('Alt Text', 'export-media-urls'),      'group' => 'meta',      'cb' => 'f_alt'),
+            'caption'     => array('label' => __('Caption', 'export-media-urls'),       'group' => 'meta',      'cb' => 'f_caption',     'text' => true, 'html_decode' => true),
+            'alt'         => array('label' => __('Alt Text', 'export-media-urls'),      'group' => 'meta',      'cb' => 'f_alt',         'text' => true),
             'alt_missing' => array('label' => __('Alt Missing', 'export-media-urls'),   'group' => 'meta',      'cb' => 'f_alt_missing'),
-            'description' => array('label' => __('Description', 'export-media-urls'),   'group' => 'meta',      'cb' => 'f_description'),
+            'description' => array('label' => __('Description', 'export-media-urls'),   'group' => 'meta',      'cb' => 'f_description', 'text' => true),
 
             // --- Relations ---
-            'parent'        => array('label' => __('Uploaded To (Parent)', 'export-media-urls'), 'group' => 'relations', 'cb' => 'f_parent'),
+            'parent'        => array('label' => __('Uploaded To (Parent)', 'export-media-urls'), 'group' => 'relations', 'cb' => 'f_parent', 'text' => true, 'html_decode' => true),
             'parent_url'    => array('label' => __('Uploaded To URL', 'export-media-urls'),      'group' => 'relations', 'cb' => 'f_parent_url'),
             'used_in_count' => array('label' => __('Used In (count)', 'export-media-urls'),      'group' => 'relations', 'cb' => 'f_used_in_count'),
-            'used_in_titles' => array('label' => __('Used In (posts)', 'export-media-urls'),     'group' => 'relations', 'cb' => 'f_used_in_titles'),
+            'used_in_titles' => array('label' => __('Used In (posts)', 'export-media-urls'),     'group' => 'relations', 'cb' => 'f_used_in_titles', 'text' => true, 'html_decode' => true),
             'used_in_urls'  => array('label' => __('Used In (URLs)', 'export-media-urls'),       'group' => 'relations', 'cb' => 'f_used_in_urls'),
+            'used_in_id'    => array('label' => __('Used In (post ID)', 'export-media-urls'),    'group' => 'relations', 'cb' => 'f_used_in_id'),
+            'used_in_type'  => array('label' => __('Used In (post type)', 'export-media-urls'),  'group' => 'relations', 'cb' => 'f_used_in_type'),
             'is_unused'     => array('label' => __('Unused', 'export-media-urls'),               'group' => 'relations', 'cb' => 'f_is_unused'),
 
             // --- Dates ---
@@ -129,7 +139,21 @@ class EMU_Fields
             return '';
         }
 
-        return call_user_func(array($this, $all[$key]['cb']), $post_id, $options, $context);
+        $def = $all[$key];
+        $value = (string) call_user_func(array($this, $def['cb']), $post_id, $options, $context);
+
+        // Applying both would decode twice, turning "&amp;lt;b&amp;gt;" into live markup.
+        if (!empty($def['html_decode']) && empty($options['text_entities'])) {
+            $value = htmlspecialchars_decode($value);
+        }
+
+        // Prose is normalised; identifiers, URLs and file names keep their
+        // characters, but every field is still made well-formed UTF-8.
+        if (!empty($def['text'])) {
+            return EMU_Text::normalize($value, $options);
+        }
+
+        return EMU_Text::ensure_utf8($value);
     }
 
     /**
@@ -156,7 +180,7 @@ class EMU_Fields
      */
     public function usage_field_keys()
     {
-        return array('used_in_count', 'used_in_titles', 'used_in_urls', 'is_unused');
+        return array('used_in_count', 'used_in_titles', 'used_in_urls', 'used_in_id', 'used_in_type', 'is_unused');
     }
 
     /**
@@ -188,7 +212,7 @@ class EMU_Fields
 
     public function f_title($id, $o, $c)
     {
-        return htmlspecialchars_decode(get_the_title($id));
+        return get_the_title($id);
     }
 
     public function f_file_name($id, $o, $c)
@@ -246,7 +270,7 @@ class EMU_Fields
         // directly so the plugin keeps working on WordPress 3.6
         // (wp_get_attachment_caption() is 4.6+).
         $post = get_post($id);
-        return $post ? htmlspecialchars_decode($post->post_excerpt) : '';
+        return $post ? $post->post_excerpt : '';
     }
 
     public function f_alt($id, $o, $c)
@@ -280,7 +304,7 @@ class EMU_Fields
         if (!$parent) {
             return '';
         }
-        return htmlspecialchars_decode(get_the_title($parent));
+        return get_the_title($parent);
     }
 
     public function f_parent_url($id, $o, $c)
@@ -301,14 +325,15 @@ class EMU_Fields
      */
     public function f_used_in_count($id, $o, $c)
     {
+        // Always the item total, so it still reads as 3 on each of 3 expanded rows.
         return (string) count($this->used_in($c));
     }
 
     public function f_used_in_titles($id, $o, $c)
     {
         $titles = array();
-        foreach ($this->used_in($c) as $pid) {
-            $titles[] = htmlspecialchars_decode(get_the_title($pid));
+        foreach ($this->row_posts($c) as $pid) {
+            $titles[] = get_the_title($pid);
         }
         return implode(' | ', $titles);
     }
@@ -316,13 +341,30 @@ class EMU_Fields
     public function f_used_in_urls($id, $o, $c)
     {
         $urls = array();
-        foreach ($this->used_in($c) as $pid) {
+        foreach ($this->row_posts($c) as $pid) {
             $url = get_permalink($pid);
             if ($url) {
                 $urls[] = esc_url($url);
             }
         }
         return implode(' | ', $urls);
+    }
+
+    public function f_used_in_id($id, $o, $c)
+    {
+        return implode(' | ', array_map('strval', $this->row_posts($c)));
+    }
+
+    public function f_used_in_type($id, $o, $c)
+    {
+        $types = array();
+        foreach ($this->row_posts($c) as $pid) {
+            $type = get_post_type($pid);
+            if ($type && !in_array($type, $types, true)) {
+                $types[] = $type;
+            }
+        }
+        return implode(' | ', $types);
     }
 
     /**
@@ -352,6 +394,21 @@ class EMU_Fields
     private function used_in($c)
     {
         return (isset($c['used_in']) && is_array($c['used_in'])) ? $c['used_in'] : array();
+    }
+
+    /**
+     * The referencing posts this row is about: every one by default, or the
+     * single post the orchestrator picked when expanding.
+     *
+     * @param array $c Per-item context.
+     * @return int[]
+     */
+    private function row_posts($c)
+    {
+        if (isset($c['usage_row']) && $c['usage_row'] !== null) {
+            return array((int) $c['usage_row']);
+        }
+        return $this->used_in($c);
     }
 
     /**

@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
 class Constants
 {
     const PLUGIN_NAME = 'Export Media URLs';
-    const PLUGIN_VERSION = '3.1';
+    const PLUGIN_VERSION = '3.2';
     const PLUGIN_SLUG = 'export-media-urls';
     const PLUGIN_FILE = 'export-media-urls/export-media-urls.php';
     const PLUGIN_DIR = 'export-media-urls';
@@ -40,6 +40,9 @@ class Constants
 
     /** Attachments fetched per batch when exporting (keeps memory bounded). */
     const BATCH_SIZE = 500;
+
+    /** meta_id span read per query by the optional deep "where used" scan. */
+    const META_CHUNK_SIZE = 2000;
 
     /** Default rows-per-page for the on-screen results table. */
     const DEFAULT_PER_PAGE = 100;
